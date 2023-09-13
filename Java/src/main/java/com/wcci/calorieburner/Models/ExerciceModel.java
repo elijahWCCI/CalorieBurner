@@ -1,12 +1,8 @@
 package com.wcci.calorieburner.Models;
 
 import org.springframework.lang.NonNull;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class ExerciceModel {
@@ -20,12 +16,13 @@ public class ExerciceModel {
     public ExerciceModel() {
     }
 
-    public ExerciceModel(String name) {
+    public ExerciceModel(String name,UserModel user) {
         this.name = name;
+        this.user = user;
     }
 
     @ManyToOne
-    private UserModel user;
+    private UserModel user; 
 
     public Long getId() {
         return id;
@@ -68,6 +65,17 @@ public class ExerciceModel {
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "ExerciceModel [id=" + id + ", name=" + name + ", user=" + user + "]";
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
 
 }

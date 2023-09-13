@@ -20,18 +20,14 @@ public class FoodModel {
     public FoodModel() {
     }
 
-    
-
-    public FoodModel(String foodName, String imageurl, UserModel user) {
+    public FoodModel(String foodName, String imageurl , UserModel user) {
         this.foodName = foodName;
         this.imageurl = imageurl;
         this.user = user;
     }
 
-
-
     @ManyToOne
-    private UserModel user;
+    private UserModel user; 
 
     public Long getId() {
         return id;
@@ -47,14 +43,6 @@ public class FoodModel {
 
     public void setFoodName(String foodName) {
         this.foodName = foodName;
-    }
-
-    public UserModel getUser() {
-        return user;
-    }
-
-    public void setUser(UserModel user) {
-        this.user = user;
     }
 
     public String getImageurl() {
@@ -91,6 +79,17 @@ public class FoodModel {
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "FoodModel [id=" + id + ", foodName=" + foodName + ", imageurl=" + imageurl + ", user=" + user + "]";
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
 
 }

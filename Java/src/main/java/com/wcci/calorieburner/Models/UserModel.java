@@ -1,12 +1,12 @@
 package com.wcci.calorieburner.Models;
 
-import org.springframework.lang.NonNull;
 
+import org.springframework.lang.NonNull;
+import java.util.Collection;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -34,9 +34,16 @@ public class UserModel {
         this.weight = weight;
     }
 
-    @OneToMany
-    private FoodModel food;
+    
 
+    @OneToMany(mappedBy = "user")
+    private Collection<FoodModel> food; 
+
+    public Collection<FoodModel> getFood() {
+        return food;
+    }
+    
+    
     public Long getId() {
         return id;
     }
@@ -100,6 +107,12 @@ public class UserModel {
         } else if (!name.equals(other.name))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UserModel [id=" + id + ", name=" + name + ", gender=" + gender + ", age=" + age + ", weight=" + weight
+                + ", food=" + food + "]";
     }
 
 
