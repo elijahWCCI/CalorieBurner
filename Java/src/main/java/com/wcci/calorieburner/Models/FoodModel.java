@@ -15,14 +15,17 @@ public class FoodModel {
     @Column(unique = true)
     private String foodName;
 
+    private String calories;
+
     @NonNull
     private String imageurl;
 
     public FoodModel() {
     }
 
-    public FoodModel(String foodName, String imageurl,FoodCategoryModel foodCategory) {
+    public FoodModel(String foodName,String calories, String imageurl,FoodCategoryModel foodCategory) {
         this.foodName = foodName;
+        this.calories = calories;
         this.imageurl = imageurl;
         this.foodCategory = foodCategory;
     }
@@ -41,6 +44,20 @@ public class FoodModel {
 
     public void setFoodName(String foodName) {
         this.foodName = foodName;
+    }
+
+    
+
+    public String getCalories() {
+        return calories;
+    }
+
+    public void setCalories(String calories) {
+        this.calories = calories;
+    }
+
+    public void setFoodLog(Collection<UserFoodLog> foodLog) {
+        this.foodLog = foodLog;
     }
 
     public String getImageurl() {
@@ -77,12 +94,10 @@ public class FoodModel {
         return true;
     }
 
-    
-
     @Override
     public String toString() {
-        return "FoodModel [id=" + id + ", foodName=" + foodName + ", imageurl=" + imageurl + ", foodCategory="
-                + foodCategory + "]";
+        return "FoodModel [id=" + id + ", foodName=" + foodName + ", calories=" + calories + ", imageurl=" + imageurl
+                + ", foodCategory=" + foodCategory + ", foodLog=" + foodLog + "]";
     }
 
     @ManyToOne
