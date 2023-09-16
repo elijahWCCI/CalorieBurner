@@ -15,7 +15,7 @@ public class FoodModel {
     @Column(unique = true)
     private String foodName;
 
-    private String calories;
+    private int calories;
 
     @NonNull
     private String imageurl;
@@ -23,7 +23,7 @@ public class FoodModel {
     public FoodModel() {
     }
 
-    public FoodModel(String foodName,String calories, String imageurl,FoodCategoryModel foodCategory) {
+    public FoodModel(String foodName,int calories, String imageurl,FoodCategoryModel foodCategory) {
         this.foodName = foodName;
         this.calories = calories;
         this.imageurl = imageurl;
@@ -48,7 +48,7 @@ public class FoodModel {
 
     
 
-    public String getCalories() {
+    public int getCalories() {
         return calories;
     }
 
@@ -94,11 +94,15 @@ public class FoodModel {
         return true;
     }
 
+    
+
     @Override
     public String toString() {
         return "FoodModel [id=" + id + ", foodName=" + foodName + ", calories=" + calories + ", imageurl=" + imageurl
                 + ", foodCategory=" + foodCategory + ", foodLog=" + foodLog + "]";
     }
+
+
 
     @ManyToOne
     private FoodCategoryModel foodCategory; 
