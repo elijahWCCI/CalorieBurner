@@ -13,11 +13,14 @@ public class ExerciseModel {
     @Column(unique = true)
     private String name;
 
+    private int caloriesBurned;
+
     public ExerciseModel() {
     }
 
-    public ExerciseModel(String name) {
+    public ExerciseModel(String name,int caloriesBurned) {
         this.name = name;
+        this.caloriesBurned = caloriesBurned;
     }
 
     @OneToMany(mappedBy = "exercise")
@@ -41,6 +44,20 @@ public class ExerciseModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    
+
+    public int getCaloriesBurned() {
+        return caloriesBurned;
+    }
+
+    public void setCaloriesBurned(int caloriesBurned) {
+        this.caloriesBurned = caloriesBurned;
+    }
+
+    public void setExerciseLog(Collection<UserExerciseLog> exerciseLog) {
+        this.exerciseLog = exerciseLog;
     }
 
     @Override
@@ -70,8 +87,11 @@ public class ExerciseModel {
 
     @Override
     public String toString() {
-        return "ExerciceModel [id=" + id + ", name=" + name + "]";
+        return "ExerciseModel [id=" + id + ", name=" + name + ", caloriesBurned=" + caloriesBurned + ", exerciseLog="
+                + exerciseLog + "]";
     }
+
+    
 
 
 }

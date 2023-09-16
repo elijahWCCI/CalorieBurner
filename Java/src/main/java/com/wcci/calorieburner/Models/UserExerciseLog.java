@@ -8,18 +8,12 @@ public class UserExerciseLog {
     
     @Id @GeneratedValue private Long id;
 
-    private int exerciseDuration;
-
-    private int caloriesBurned;
-
     public UserExerciseLog() {
     }
 
     
 
-    public UserExerciseLog(int exerciseDuration, int caloriesBurned, ExerciseModel exercise, UserModel user) {
-        this.exerciseDuration = exerciseDuration;
-        this.caloriesBurned = caloriesBurned;
+    public UserExerciseLog(ExerciseModel exercise, UserModel user) {
         this.exercise = exercise;
         this.user = user;
     }
@@ -41,31 +35,6 @@ public class UserExerciseLog {
     public void setId(Long id) {
         this.id = id;
     }
-
-
-
-    public int getExerciseDuration() {
-        return exerciseDuration;
-    }
-
-
-
-    public void setExerciseDuration(int exerciseDuration) {
-        this.exerciseDuration = exerciseDuration;
-    }
-
-
-
-    public int getCaloriesBurned() {
-        return caloriesBurned;
-    }
-
-
-
-    public void setCaloriesBurned(int caloriesBurned) {
-        this.caloriesBurned = caloriesBurned;
-    }
-
 
 
     public ExerciseModel getExercise() {
@@ -96,7 +65,6 @@ public class UserExerciseLog {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((exercise == null) ? 0 : exercise.hashCode());
         result = prime * result + ((user == null) ? 0 : user.hashCode());
         return result;
     }
@@ -112,11 +80,6 @@ public class UserExerciseLog {
         if (getClass() != obj.getClass())
             return false;
         UserExerciseLog other = (UserExerciseLog) obj;
-        if (exercise == null) {
-            if (other.exercise != null)
-                return false;
-        } else if (!exercise.equals(other.exercise))
-            return false;
         if (user == null) {
             if (other.user != null)
                 return false;
@@ -129,9 +92,10 @@ public class UserExerciseLog {
 
     @Override
     public String toString() {
-        return "UserExerciseLog [id=" + id + ", exerciseDuration=" + exerciseDuration + ", caloriesBurned="
-                + caloriesBurned + ", exercise=" + exercise + ", user=" + user + "]";
+        return "UserExerciseLog [id=" + id + ", exercise=" + exercise + ", user=" + user + "]";
     }
+
+    
 
     
 }

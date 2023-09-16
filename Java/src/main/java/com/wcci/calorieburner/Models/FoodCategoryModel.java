@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Food Category")
+@Table(name = "Food_Category")
 public class FoodCategoryModel {
     
     @Id @GeneratedValue private Long id;
