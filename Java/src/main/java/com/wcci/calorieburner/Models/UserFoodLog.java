@@ -1,56 +1,102 @@
 package com.wcci.calorieburner.Models;
 
-import java.util.Collection;
 import org.springframework.lang.NonNull;
+
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
+import lombok.Data;
+
 
 @Entity
-@Table(name = "Foods")
-public class FoodModel {
+@Table(name = "User_Food_Log")
+public class UserFoodLog {
     
     @Id @GeneratedValue private Long id;
-    
+
     @NonNull
     @Column(unique = true)
     private String foodName;
 
-    @NonNull
-    private String imageurl;
+    private int servings;
 
-    public FoodModel() {
+    public UserFoodLog() {
     }
 
-    public FoodModel(String foodName, String imageurl,FoodCategoryModel foodCategory) {
+    
+
+    public UserFoodLog(String foodName, int servings, FoodModel food, UserModel user) {
         this.foodName = foodName;
-        this.imageurl = imageurl;
-        this.foodCategory = foodCategory;
+        this.servings = servings;
+        this.food = food;
+        this.user = user;
     }
+
+
+
+    @ManyToOne 
+    private FoodModel food;
+
+    @ManyToOne 
+    private UserModel user;
 
     public Long getId() {
         return id;
     }
 
+
+
     public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public String getFoodName() {
         return foodName;
     }
 
+
+
     public void setFoodName(String foodName) {
         this.foodName = foodName;
     }
 
-    public String getImageurl() {
-        return imageurl;
+
+
+    public int getServings() {
+        return servings;
     }
 
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
+
+
+    public void setServings(int servings) {
+        this.servings = servings;
     }
-    
+
+
+
+    public FoodModel getFood() {
+        return food;
+    }
+
+
+
+    public void setFood(FoodModel food) {
+        this.food = food;
+    }
+
+
+
+    public UserModel getUser() {
+        return user;
+    }
+
+
+
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
+
+
 
     @Override
     public int hashCode() {
@@ -60,6 +106,8 @@ public class FoodModel {
         return result;
     }
 
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -68,7 +116,7 @@ public class FoodModel {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        FoodModel other = (FoodModel) obj;
+        UserFoodLog other = (UserFoodLog) obj;
         if (foodName == null) {
             if (other.foodName != null)
                 return false;
@@ -77,31 +125,17 @@ public class FoodModel {
         return true;
     }
 
-    
+
 
     @Override
     public String toString() {
-        return "FoodModel [id=" + id + ", foodName=" + foodName + ", imageurl=" + imageurl + ", foodCategory="
-                + foodCategory + "]";
+        return "UserFoodLog [id=" + id + ", foodName=" + foodName + ", servings=" + servings + ", food=" + food
+                + ", user=" + user + "]";
     }
 
-    @ManyToOne
-    private FoodCategoryModel foodCategory; 
 
-    public FoodCategoryModel getFoodCategory() {
-        return foodCategory;
-    }
 
-    public void setFoodCategory(FoodCategoryModel foodCategory) {
-        this.foodCategory = foodCategory;
-    }
-
-    @OneToMany(mappedBy = "food")
-    private Collection<UserFoodLog> foodLog;
-
-    public Collection<UserFoodLog> getFoodLog(){
-        return foodLog;
-    }
+    
 
 
 }

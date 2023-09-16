@@ -2,10 +2,10 @@ package com.wcci.calorieburner.Models;
 
 import org.springframework.lang.NonNull;
 import jakarta.persistence.*;
-
+import java.util.Collection;
 
 @Entity
-public class ExerciceModel {
+public class ExerciseModel {
     
     @Id @GeneratedValue private Long id;
 
@@ -13,16 +13,19 @@ public class ExerciceModel {
     @Column(unique = true)
     private String name;
 
-    public ExerciceModel() {
+    public ExerciseModel() {
     }
 
-    public ExerciceModel(String name,UserModel user) {
+    public ExerciseModel(String name) {
         this.name = name;
-        this.user = user;
     }
 
-    @ManyToOne
-    private UserModel user; 
+    @OneToMany(mappedBy = "exercise")
+    private Collection<UserExerciseLog> exerciseLog; 
+
+    public Collection<UserExerciseLog> getExerciseLog(){
+        return exerciseLog;
+    }
 
     public Long getId() {
         return id;
@@ -56,7 +59,7 @@ public class ExerciceModel {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ExerciceModel other = (ExerciceModel) obj;
+        ExerciseModel other = (ExerciseModel) obj;
         if (name == null) {
             if (other.name != null)
                 return false;
@@ -67,15 +70,8 @@ public class ExerciceModel {
 
     @Override
     public String toString() {
-        return "ExerciceModel [id=" + id + ", name=" + name + ", user=" + user + "]";
+        return "ExerciceModel [id=" + id + ", name=" + name + "]";
     }
 
-    public UserModel getUser() {
-        return user;
-    }
-
-    public void setUser(UserModel user) {
-        this.user = user;
-    }
 
 }

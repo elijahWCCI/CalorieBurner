@@ -3,6 +3,8 @@ package com.wcci.calorieburner.Models;
 
 import org.springframework.lang.NonNull;
 import java.util.Collection;
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,69 +22,129 @@ public class UserModel {
     @Column(unique = true)
     private String name; 
 
+    private int age;
+
     private String gender;
 
-    private int age , weight;
+    private int height;
 
+    private int weight;
+
+    private int targetWeight;
+
+    private Date desiredWeightDate;
     public UserModel() {
     }
 
-    public UserModel(String name, String gender, int age, int weight) {
+    
+
+    public UserModel(String name, int age, String gender, int height, int weight, int targetWeight,
+            Date desiredWeightDate) {
         this.name = name;
-        this.gender = gender;
         this.age = age;
+        this.gender = gender;
+        this.height = height;
         this.weight = weight;
+        this.targetWeight = targetWeight;
+        this.desiredWeightDate = desiredWeightDate;
     }
 
-    
-
-    @OneToMany(mappedBy = "user")
-    private Collection<FoodModel> food; 
-
-    public Collection<FoodModel> getFood() {
-        return food;
-    }
-    
-    
     public Long getId() {
         return id;
     }
+
+
 
     public void setId(Long id) {
         this.id = id;
     }
 
+
+
     public String getName() {
         return name;
     }
+
+
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getGender() {
-        return gender;
-    }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 
     public int getAge() {
         return age;
     }
 
+
+
     public void setAge(int age) {
         this.age = age;
     }
+
+
+
+    public String getGender() {
+        return gender;
+    }
+
+
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
+
+    public int getHeight() {
+        return height;
+    }
+
+
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+
 
     public int getWeight() {
         return weight;
     }
 
+
+
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+
+
+    public int getTargetWeight() {
+        return targetWeight;
+    }
+
+
+
+    public void setTargetWeight(int targetWeight) {
+        this.targetWeight = targetWeight;
+    }
+
+
+
+    public Date getDesiredWeightDate() {
+        return desiredWeightDate;
+    }
+
+
+
+    public void setDesiredWeightDate(Date desiredWeightDate) {
+        this.desiredWeightDate = desiredWeightDate;
+    }
+
+    
+
 
     @Override
     public int hashCode() {
@@ -91,6 +153,8 @@ public class UserModel {
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
+
+
 
     @Override
     public boolean equals(Object obj) {
@@ -109,11 +173,34 @@ public class UserModel {
         return true;
     }
 
+
+
     @Override
     public String toString() {
-        return "UserModel [id=" + id + ", name=" + name + ", gender=" + gender + ", age=" + age + ", weight=" + weight
-                + ", food=" + food + "]";
+        return "UserModel [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", height=" + height
+                + ", weight=" + weight + ", targetWeight=" + targetWeight + ", desiredWeightDate=" + desiredWeightDate
+                + "]";
     }
+
+    @OneToMany(mappedBy = "user")
+    private Collection<UserFoodLog> foodLog;
+
+    public Collection<UserFoodLog> getFoodLog(){
+        return foodLog;
+    }
+
+
+    @OneToMany(mappedBy = "user")
+    private Collection<UserExerciseLog> exerciseLog;
+
+    public Collection<UserExerciseLog> getExerciseLog(){
+        return exerciseLog;
+    } 
+
+
+    
+    
+    
 
 
 
