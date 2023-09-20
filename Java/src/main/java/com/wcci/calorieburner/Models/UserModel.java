@@ -182,21 +182,6 @@ public class UserModel {
                 + "]";
     }
 
-    @OneToMany(mappedBy = "user")
-    private Collection<UserFoodLog> foodLog;
-
-    public Collection<UserFoodLog> getFoodLog(){
-        return foodLog;
-    }
-
-
-    @OneToMany(mappedBy = "user")
-    private Collection<UserExerciseLog> exerciseLog;
-
-    public Collection<UserExerciseLog> getExerciseLog(){
-        return exerciseLog;
-    } 
-
 
     
     

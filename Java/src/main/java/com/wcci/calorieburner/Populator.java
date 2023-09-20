@@ -4,11 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.wcci.calorieburner.Models.ExerciseModel;
-import com.wcci.calorieburner.Models.FoodCategoryModel;
 import com.wcci.calorieburner.Models.FoodModel;
 //import com.wcci.calorieburner.Models.UserModel;
 import com.wcci.calorieburner.Repositories.ExerciseRepository;
-import com.wcci.calorieburner.Repositories.FoodCategoryRepository;
 import com.wcci.calorieburner.Repositories.FoodRepository;
 import com.wcci.calorieburner.Repositories.UserRepository;
 
@@ -17,8 +15,6 @@ import jakarta.annotation.Resource;
 @Component
 public class Populator implements CommandLineRunner {
 
-    @Resource
-    private FoodCategoryRepository fcRepository;
 
     @Resource
     private FoodRepository fRepository;
@@ -26,8 +22,8 @@ public class Populator implements CommandLineRunner {
     @Resource
     private ExerciseRepository eRepository;
 
-    public Populator(FoodCategoryRepository fcRepository, FoodRepository fRepository, ExerciseRepository eRepository) {
-        this.fcRepository = fcRepository;
+    public Populator( FoodRepository fRepository, ExerciseRepository eRepository) {
+        
         this.fRepository = fRepository;
         this.eRepository = eRepository;
     }
@@ -35,81 +31,72 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        FoodCategoryModel foodCategory1 = new FoodCategoryModel("Grains");
-        fcRepository.save(foodCategory1);
-        FoodCategoryModel foodCategory2 = new FoodCategoryModel("Vegetables (Raw)");
-        fcRepository.save(foodCategory2);
-        FoodCategoryModel foodCategory3 = new FoodCategoryModel("Fruits");
-        fcRepository.save(foodCategory3);
-        FoodCategoryModel foodCategory4 = new FoodCategoryModel("Dairy");
-        fcRepository.save(foodCategory4);
-        FoodCategoryModel foodCategory5 = new FoodCategoryModel("Proteins");
-        fcRepository.save(foodCategory5);
 
-        FoodModel food1 = new FoodModel("Whole Wheat Bread 1 Slice", 69, null, foodCategory1);
+
+        FoodModel food1 = new FoodModel("Whole Wheat Bread 1 Slice", 69, null );
         fRepository.save(food1);
-        FoodModel food2 = new FoodModel("Brown Rice 1 Cup", 216, null, foodCategory1);
+        FoodModel food2 = new FoodModel("Brown Rice 1 Cup", 216, null );
         fRepository.save(food2);
-        FoodModel food3 = new FoodModel("Oatmeal 1/2 Cup", 150, null, foodCategory1);
+        FoodModel food3 = new FoodModel("Oatmeal 1/2 Cup", 150, null );
         fRepository.save(food3);
-        FoodModel food4 = new FoodModel("Quinoa 1/2 Cup", 111, null, foodCategory1);
+        FoodModel food4 = new FoodModel("Quinoa 1/2 Cup", 111, null );
         fRepository.save(food4);
-        FoodModel food5 = new FoodModel("Barley 1/2 Cup", 96, null, foodCategory1);
+        FoodModel food5 = new FoodModel("Barley 1/2 Cup", 96, null );
         fRepository.save(food5);
-        FoodModel food6 = new FoodModel("Whole Grain Cereal 1 Cup", 150, null, foodCategory1);
+        FoodModel food6 = new FoodModel("Whole Grain Cereal 1 Cup", 150, null );
         fRepository.save(food6);
 
 
-        FoodModel food7 = new FoodModel("Spinach 1 Cup", 7, null, foodCategory2);
+        FoodModel food7 = new FoodModel("Spinach 1 Cup", 7, null );
         fRepository.save(food7);
-        FoodModel food8 = new FoodModel("Carrots 1 Cup", 52, null, foodCategory2);
+        FoodModel food8 = new FoodModel("Carrots 1 Cup", 52, null );
         fRepository.save(food8);
-        FoodModel food9 = new FoodModel("Bell Peppers 1 Cup", 30, null, foodCategory2);
+        FoodModel food9 = new FoodModel("Bell Peppers 1 Cup", 30, null );
         fRepository.save(food9);
-        FoodModel food10 = new FoodModel("Tomatoes 1 Cup", 18, null, foodCategory2);
+        FoodModel food10 = new FoodModel("Tomatoes 1 Cup", 18, null );
         fRepository.save(food10);
-        FoodModel food11 = new FoodModel("Cauliflower 1 Cup", 25, null, foodCategory2);
+        FoodModel food11 = new FoodModel("Cauliflower 1 Cup", 25, null );
         fRepository.save(food11);
-        FoodModel food12 = new FoodModel("Zucchini 1 Cup", 20, null, foodCategory2);
+        FoodModel food12 = new FoodModel("Zucchini 1 Cup", 20, null );
         fRepository.save(food12);
 
-        FoodModel food13 = new FoodModel("Banana", 105, null, foodCategory3);
+        FoodModel food13 = new FoodModel("Banana", 105, null );
         fRepository.save(food13);
-        FoodModel food14 = new FoodModel("Orange", 62, null, foodCategory3);
+        FoodModel food14 = new FoodModel("Orange", 62, null );
         fRepository.save(food14);
-        FoodModel food15 = new FoodModel("Strawberries 1 cup", 32, null, foodCategory3);
+        FoodModel food15 = new FoodModel("Strawberries 1 cup", 32, null );
         fRepository.save(food15);
-        FoodModel food16 = new FoodModel("Blueberries 1 cup", 84, null, foodCategory3);
+        FoodModel food16 = new FoodModel("Blueberries 1 cup", 84, null );
         fRepository.save(food16);
-        FoodModel food17 = new FoodModel("Grapes 1 cup", 69, null, foodCategory3);
+        FoodModel food17 = new FoodModel("Grapes 1 cup", 69, null );
         fRepository.save(food17);
-        FoodModel food18 = new FoodModel("Apple", 65, null, foodCategory3);
+        FoodModel food18 = new FoodModel("Apple", 65, null );
         fRepository.save(food18);
 
-        FoodModel food19 = new FoodModel("Greek Yogurt (Low-Fat) 6oz", 100, null, foodCategory4);
+        FoodModel food19 = new FoodModel("Greek Yogurt (Low-Fat) 6oz", 100, null );
         fRepository.save(food19);
-        FoodModel food20 = new FoodModel("Cottage Cheese (Low-Fat) 1 cup", 206, null, foodCategory4);
+        FoodModel food20 = new FoodModel("Cottage Cheese (Low-Fat) 1 cup", 206, null );
         fRepository.save(food20);
-        FoodModel food21 = new FoodModel("Almond Milk (Unsweetened) 1 cup", 13, null, foodCategory4);
+        FoodModel food21 = new FoodModel("Almond Milk (Unsweetened) 1 cup", 13, null );
         fRepository.save(food21);
-        FoodModel food22 = new FoodModel("Cheese (Low-Fat) 1oz",60, null, foodCategory4);
+        FoodModel food22 = new FoodModel("Cheese (Low-Fat) 1oz",60, null );
         fRepository.save(food22);
-        FoodModel food23 = new FoodModel("Soy Milk (Unsweetened) 1 Cup", 80, null, foodCategory4);
+        FoodModel food23 = new FoodModel("Soy Milk (Unsweetened) 1 Cup", 80, null );
         fRepository.save(food23);
-        FoodModel food24 = new FoodModel("Whole Milk 8oz", 150, null, foodCategory4);
+        FoodModel food24 = new FoodModel("Whole Milk 8oz", 150, null );
         fRepository.save(food24);
 
-        FoodModel food25 = new FoodModel("Salmon 3.5oz", 206, null, foodCategory5);
+        FoodModel food25 = new FoodModel("Salmon 3.5oz", 206, null );
         fRepository.save(food25);
-        FoodModel food26 = new FoodModel("Tofu 3.5oz", 144, null, foodCategory5);
+        FoodModel food26 = new FoodModel("Tofu 3.5oz", 144, null );
         fRepository.save(food26);
-        FoodModel food27 = new FoodModel("Chicken Breast 3.5oz", 165, null, foodCategory5);
+        FoodModel food27 = new FoodModel("Chicken Breast 3.5oz", 165, null );
         fRepository.save(food27);
-        FoodModel food28 = new FoodModel("Beans (Black Beans) 1 Cup",277, null, foodCategory5);
+        FoodModel food28 = new FoodModel("Beans (Black Beans) 1 Cup",277, null );
         fRepository.save(food28);
-        FoodModel food29 = new FoodModel("Egg", 68, null, foodCategory5);
+        FoodModel food29 = new FoodModel("Egg", 68, null );
         fRepository.save(food29);
-        FoodModel food30 = new FoodModel("Lean Beef (Sirloin) 3.5oz", 143, null, foodCategory5);
+        FoodModel food30 = new FoodModel("Lean Beef (Sirloin) 3.5oz", 143, null );
         fRepository.save(food30);
 
         ExerciseModel exercise1 = new ExerciseModel("Running (6 mph)",590);
