@@ -23,13 +23,6 @@ public class ExerciseModel {
         this.caloriesBurned = caloriesBurned;
     }
 
-    @OneToMany(mappedBy = "exercise")
-    private Collection<UserExerciseLog> exerciseLog; 
-
-    public Collection<UserExerciseLog> getExerciseLog(){
-        return exerciseLog;
-    }
-
     public Long getId() {
         return id;
     }
@@ -54,10 +47,6 @@ public class ExerciseModel {
 
     public void setCaloriesBurned(int caloriesBurned) {
         this.caloriesBurned = caloriesBurned;
-    }
-
-    public void setExerciseLog(Collection<UserExerciseLog> exerciseLog) {
-        this.exerciseLog = exerciseLog;
     }
 
     @Override
@@ -87,8 +76,7 @@ public class ExerciseModel {
 
     @Override
     public String toString() {
-        return "ExerciseModel [id=" + id + ", name=" + name + ", caloriesBurned=" + caloriesBurned + ", exerciseLog="
-                + exerciseLog + "]";
+        return "ExerciseModel [id=" + id + ", name=" + name + ", caloriesBurned=" + caloriesBurned;
     }
 
     
