@@ -23,11 +23,10 @@ public class FoodModel {
     public FoodModel() {
     }
 
-    public FoodModel(String foodName,int calories, String imageurl,FoodCategoryModel foodCategory) {
+    public FoodModel(String foodName,int calories, String imageurl) {
         this.foodName = foodName;
         this.calories = calories;
         this.imageurl = imageurl;
-        this.foodCategory = foodCategory;
     }
 
     public Long getId() {
@@ -56,9 +55,7 @@ public class FoodModel {
         this.calories = calories;
     }
 
-    public void setFoodLog(Collection<UserFoodLog> foodLog) {
-        this.foodLog = foodLog;
-    }
+   
 
     public String getImageurl() {
         return imageurl;
@@ -98,29 +95,9 @@ public class FoodModel {
 
     @Override
     public String toString() {
-        return "FoodModel [id=" + id + ", foodName=" + foodName + ", calories=" + calories + ", imageurl=" + imageurl
-                + ", foodCategory=" + foodCategory + ", foodLog=" + foodLog + "]";
+        return "FoodModel [id=" + id + ", foodName=" + foodName + ", calories=" + calories + ", imageurl=" + imageurl;
     }
 
-
-
-    @ManyToOne
-    private FoodCategoryModel foodCategory; 
-
-    public FoodCategoryModel getFoodCategory() {
-        return foodCategory;
-    }
-
-    public void setFoodCategory(FoodCategoryModel foodCategory) {
-        this.foodCategory = foodCategory;
-    }
-
-    @OneToMany(mappedBy = "food")
-    private Collection<UserFoodLog> foodLog;
-
-    public Collection<UserFoodLog> getFoodLog(){
-        return foodLog;
-    }
 
 
 }
