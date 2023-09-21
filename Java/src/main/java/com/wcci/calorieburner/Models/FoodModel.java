@@ -16,6 +16,7 @@ public class FoodModel {
     private String foodName;
 
     private int calories;
+    private String foodCategory;
 
     @NonNull
     private String imageurl;
@@ -23,10 +24,11 @@ public class FoodModel {
     public FoodModel() {
     }
 
-    public FoodModel(String foodName,int calories, String imageurl) {
+    public FoodModel(String foodName,int calories, String imageurl, String foodCategory) {
         this.foodName = foodName;
         this.calories = calories;
         this.imageurl = imageurl;
+        this.foodCategory = foodCategory;
     }
 
     public Long getId() {
@@ -39,6 +41,10 @@ public class FoodModel {
 
     public String getFoodName() {
         return foodName;
+    }
+
+    public String getFoodCategory() {
+        return foodCategory;
     }
 
     public void setFoodName(String foodName) {

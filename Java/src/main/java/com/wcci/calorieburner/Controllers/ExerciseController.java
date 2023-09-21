@@ -1,4 +1,5 @@
 package com.wcci.calorieburner.Controllers;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class ExerciseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExerciseModel> updateExercise(@PathVariable Long id, @RequestBody Exercise updatedExercise) {
+    public ResponseEntity<ExerciseModel> updateExercise(@PathVariable Long id, @RequestBody ExerciseModel updatedExercise) {
         if (!exerciseRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

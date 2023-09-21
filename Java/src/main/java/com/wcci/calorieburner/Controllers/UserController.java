@@ -1,9 +1,16 @@
-package com.wcci.calorieburner;
+package com.wcci.calorieburner.Controllers;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Streamable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.wcci.calorieburner.Models.UserModel;
+import com.wcci.calorieburner.Repositories.UserRepository;
+
 import java.util.List;
+import java.util.Optional;
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -16,26 +23,26 @@ public class UserController {
 
     // Create a new user
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public UserModel createUser(@RequestBody UserModel user) {
         return userRepository.save(user);
     }
 
     // Get a list of all users
     @GetMapping
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserModel> getAllUsers() {
+        return Streamable.of(userRepository.findAll()).toList();
     }
 
     // Get a user by ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        Optional<User> user = userRepository.findById(id);
+    public ResponseEntity<UserModel> getUserById(@PathVariable Long id) {
+        Optional<UserModel> user = userRepository.findById(id);
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Update a user by ID
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+    public ResponseEntity<UserModel> updateUser(@PathVariable Long id, @RequestBody UserModel updatedUser) {
         if (!userRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

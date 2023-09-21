@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.wcci.calorieburner.Models.ExerciseModel;
 import com.wcci.calorieburner.Repositories.ExerciseRepository;
-import com.wcci.calorieburner.Repositories.FoodCategoryRepository;
 
 import jakarta.annotation.Resource;
 

@@ -1,15 +1,11 @@
 package com.wcci.calorieburner.Populators;
 
+import java.util.Date;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.wcci.calorieburner.Models.ExerciseModel;
-import com.wcci.calorieburner.Models.FoodCategoryModel;
-import com.wcci.calorieburner.Models.FoodModel;
-//import com.wcci.calorieburner.Models.UserModel;
-import com.wcci.calorieburner.Repositories.ExerciseRepository;
-import com.wcci.calorieburner.Repositories.FoodCategoryRepository;
-import com.wcci.calorieburner.Repositories.FoodRepository;
+import com.wcci.calorieburner.Models.UserModel;
 import com.wcci.calorieburner.Repositories.UserRepository;
 
 import jakarta.annotation.Resource;
@@ -21,6 +17,7 @@ public class UserPopulator implements CommandLineRunner {
     private UserRepository uRepository;
 
 
+    Date d1 = new Date();
 
 
 
@@ -31,16 +28,16 @@ public class UserPopulator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        UserModel foodCategory1 = new UserModel("Grains");
-        uRepository.save(foodCategory1);
-        UserModel foodCategory2 = new UserModel("Vegetables (Raw)");
-        uRepository.save(foodCategory2);
-        UserModel foodCategory3 = new UserModel("Fruits");
-        uRepository.save(foodCategory3);
-        UserModel foodCategory4 = new UserModel("Dairy");
-        uRepository.save(foodCategory4);
-        UserModel foodCategory5 = new UserModel("Proteins");
-        uRepository.save(foodCategory5);
+        UserModel user1 = new UserModel("Homer", 39, "Male", 177, 240, 220, d1);
+        uRepository.save(user1);
+        UserModel user2 = new UserModel("Marge", 36, "Female", 170, 150, 145, d1);
+        uRepository.save(user2);
+        UserModel user3 = new UserModel("Peter", 42, "Male", 183, 270, 250, d1);
+        uRepository.save(user3);
+        UserModel user4 = new UserModel("Lois", 40, "Female", 172, 115, 110, d1);
+        uRepository.save(user4);
+        UserModel user5 = new UserModel("Brian", 10, "Male", 139, 64, 60, d1);
+        uRepository.save(user5);
 
     }
 
