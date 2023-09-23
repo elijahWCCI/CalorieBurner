@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>GitFit</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="javascript/script.js"></script>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <!-- <script src="javascript/script.js"></script> -->
 </head>
 <body>
     <div id="container">
@@ -48,19 +48,16 @@
                 <div class="userGroup">
                     <!-- Set Weight Loss Goal Date -->
                     <button id="button1" type="button" onclick="setGoalDate()">Set Weight Loss Goal Date</button>
-                    <input id="input1" type="date" id="goalDate" name="goalDate"><br><br>
+                    <input id="input1" type="date" name="goalDate"><br><br>
                 </div>
             </form>
 
             <!-- Food Options Section -->
             <h2>Food Options</h2>
-            <div id="foodOptions">
-                <button onclick="calculateCalories('Apple')">Apple</button>
-                <button onclick="calculateCalories('Grapes')">Grapes</button>
-                <button onclick="calculateCalories('Rice')">Rice</button>
-                <button onclick="calculateCalories('Bread')">Bread</button>
-                <button onclick="calculateCalories('Chicken')">Chicken</button>
-                <button onclick="calculateCalories('Beef')">Beef</button>
+            <div id="foodOptions" th:each="food:${Foods}">
+                
+                <button onclick="calculateCalories('Apple')" th:text="${food.foodName}"></button>
+            
             </div>
 
             <!-- Exercise Options Section -->

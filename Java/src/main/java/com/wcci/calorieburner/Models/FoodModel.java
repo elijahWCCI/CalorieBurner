@@ -11,13 +11,13 @@ public class FoodModel {
     
     @Id @GeneratedValue private Long id;
     
-    @NonNull
-    @Column(unique = true)
+  //  @NonNull
+    //@Column(unique = true)
     private String foodName;
 
     private int calories;
 
-    @NonNull
+    //@NonNull
     private String imageurl;
 
     public FoodModel() {
