@@ -4,27 +4,30 @@ package com.wcci.calorieburner.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.wcci.calorieburner.Models.UserModel;
 import com.wcci.calorieburner.Repositories.UserRepository;
+import com.wcci.calorieburner.Services.UserService;
 
 import java.util.List;
 import java.util.Optional;
-@RestController
-@RequestMapping("/users")
-public class UserController {
-    private final UserRepository userRepository;
 
-    @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+
+@Controller
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     // Create a new user
     @PostMapping
     public UserModel createUser(@RequestBody UserModel user) {
-        return userRepository.save(user);
+        return userService.saveUser(user);
     }
 
     // Get a list of all users

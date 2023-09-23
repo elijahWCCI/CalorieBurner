@@ -1,10 +1,12 @@
 package com.wcci.calorieburner.Controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.wcci.calorieburner.Models.ExerciseModel;
 import com.wcci.calorieburner.Repositories.ExerciseRepository;
+import com.wcci.calorieburner.Services.ExerciseService;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,22 +14,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.util.Streamable;
 
-@RestController
-@RequestMapping("/exercises")
+@Controller
 public class ExerciseController {
-    private final ExerciseRepository exerciseRepository;
 
-    @Autowired
-    public ExerciseController(ExerciseRepository exerciseRepository) {
-        this.exerciseRepository = exerciseRepository;
+    private final ExerciseService exerciseService;
+
+    public ExerciseController(ExerciseService exerciseService) {
+        this.exerciseService = exerciseService;
     }
 
-    @PostMapping
+    @PostMapping("/home")
     public ExerciseModel createExercise(@RequestBody ExerciseModel exercise) {
         return exerciseRepository.save(exercise);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<ExerciseModel> getAllExercises() {
         return Streamable.of(exerciseRepository.findAll()).toList();
     }
