@@ -23,7 +23,7 @@ public class FoodPopulator implements CommandLineRunner {
     public void run(String... args) throws Exception {
         
         
-        FoodModel food1 = new FoodModel("Whole Wheat Bread 1 Slice", 69, null, "foodCategory1");
+        FoodModel food1 = new FoodModel("Whole Wheat Bread 1 Slice", 69, "https://kristineskitchenblog.com/wp-content/uploads/2014/08/whole-wheat-bread-1200-square-2678.jpg", "foodCategory1");
         fRepository.save(food1);
         FoodModel food2 = new FoodModel("Brown Rice 1 Cup", 216, null, "foodCategory1");
         fRepository.save(food2);

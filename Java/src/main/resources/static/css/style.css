@@ -49,13 +49,13 @@
   }
 
   .userForm button {
-    display: block;
     width: 15%;
     padding: 10px;
-    margin-top: 20px;
+    margin: 20px 20px;
     background: #52658c;
     color: #fff;
     cursor: pointer;
+    gap: 50px;
   }
 
   #button1 {
@@ -122,6 +122,4 @@
 #foodOptions,
 #exerciseOptions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
 }

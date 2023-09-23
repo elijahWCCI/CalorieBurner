@@ -31,10 +31,10 @@ public class UserController {
     } */
 
     // Get a list of all users
-    @GetMapping
+   /*  @GetMapping
     public List<UserModel> getAllUsers() {
         return Streamable.of(userService.getAll()).toList();
-    }
+    } */
 
     // Get a user by ID
     /* @GetMapping("/{id}")

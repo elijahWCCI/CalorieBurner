@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.wcci.calorieburner.Models.ExerciseModel;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/Foods")
 public class FoodController {
 
     private final FoodService foodService;
@@ -25,9 +25,10 @@ public class FoodController {
         this.foodService = foodService;
     }
 
-    @GetMapping
-    public List<FoodModel> getAllFoods() {
-        return Streamable.of(foodService.getAll()).toList();
+    @RequestMapping({"","/","/food"})
+    public String getAllPublishers(Model model){
+        model.addAttribute("foods", foodService.getAll());
+        return "index";
     }
 
     // @GetMapping("/{id}")
