@@ -1,23 +1,15 @@
 package com.wcci.calorieburner.Controllers;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.wcci.calorieburner.Models.ExerciseModel;
-import com.wcci.calorieburner.Models.FoodModel;
-import com.wcci.calorieburner.Repositories.ExerciseRepository;
 import com.wcci.calorieburner.Services.ExerciseService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.data.util.Streamable;
 
 @Controller
 public class ExerciseController {

@@ -1,23 +1,17 @@
 package com.wcci.calorieburner.Controllers;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Streamable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.wcci.calorieburner.Models.UserModel;
-import com.wcci.calorieburner.Repositories.UserRepository;
 import com.wcci.calorieburner.Services.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Date;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 
 @Controller
