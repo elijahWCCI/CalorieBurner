@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.NoSuchElementException;
 
 @Controller
+@RequestMapping("/exercise")
 public class ExerciseController {
 
     private final ExerciseService exerciseService;
@@ -20,8 +21,7 @@ public class ExerciseController {
         this.exerciseService = exerciseService;
     }
 
-    @PostMapping("/home")
-    @ResponseBody
+    @PostMapping("/addexercise")
     public String addExercise(
         @RequestParam String name,
         @RequestParam int caloriesBurned,
@@ -41,7 +41,6 @@ public class ExerciseController {
 
     // Get a list of all users
     @GetMapping({"", "/", "/home"})
-    @ResponseBody
     public String home(Model page) {
         var exercises = exerciseService.findAll();
         page.addAttribute("exercises", exercises);
@@ -50,7 +49,6 @@ public class ExerciseController {
 
 
     @PostMapping("/delete")
-    @ResponseBody
     public String deleteExercise(
         @RequestParam Long deleteId,
         Model page  

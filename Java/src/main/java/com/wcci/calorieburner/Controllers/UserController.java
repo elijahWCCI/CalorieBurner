@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -25,8 +26,7 @@ public class UserController {
 
 
     // Create a new user
-    @PostMapping("/home")
-    @ResponseBody
+    @PostMapping("/adduser")
     public String addUser(
         @RequestParam String name,
         @RequestParam String gender,
@@ -51,7 +51,6 @@ public class UserController {
 
     // Get a list of all users
     @GetMapping({"", "/", "/home"})
-    @ResponseBody
     public String home(Model page) {
         var users = userService.findAll();
         page.addAttribute("users", users);
@@ -60,7 +59,6 @@ public class UserController {
 
 
     @PostMapping("/delete")
-    @ResponseBody
     public String deleteUser(
         @RequestParam Long deleteId,
         Model page  
