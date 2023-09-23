@@ -9,7 +9,7 @@ public class ExerciseModel {
     
     @Id @GeneratedValue private Long id;
 
-    @NonNull
+    // @NonNull
     @Column(unique = true)
     private String name;
 
