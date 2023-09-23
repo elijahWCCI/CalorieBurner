@@ -2,6 +2,7 @@ package com.wcci.calorieburner.Services;
 
 import org.springframework.stereotype.Service;
 
+import com.wcci.calorieburner.Models.FoodModel;
 import com.wcci.calorieburner.Models.UserModel;
 import com.wcci.calorieburner.Repositories.ExerciseRepository;
 import com.wcci.calorieburner.Repositories.FoodRepository;
@@ -28,6 +29,10 @@ public class UserService {
         public UserModel saveUser(UserModel userModel) {
             return userRepository.save(userModel);
         }
+
+        public Iterable<UserModel> getAll() {
+        return userRepository.findAll();
+    }
 
         public boolean magicFormula() {
             //TODO

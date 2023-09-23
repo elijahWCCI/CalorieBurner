@@ -17,6 +17,9 @@ import org.springframework.data.util.Streamable;
 @Controller
 public class ExerciseController {
 
+    @Autowired
+    private ExerciseRepository exerciseRepository;
+
     private final ExerciseService exerciseService;
 
     public ExerciseController(ExerciseService exerciseService) {
