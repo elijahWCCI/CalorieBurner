@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.NoSuchElementException;
 
 @Controller
+@ResponseBody
 public class FoodController {
 
     private final FoodService foodService;
@@ -23,7 +24,7 @@ public class FoodController {
 
         // Create a new user
     @PostMapping("/home")
-    public String addPet(
+    public String addFood(
         @RequestParam String foodName,
         @RequestParam String imageurl,
         @RequestParam String foodCategory,
@@ -52,7 +53,7 @@ public class FoodController {
 
 
     @PostMapping("/delete")
-    public String deletePet(
+    public String deleteFood(
         @RequestParam Long deleteId,
         Model page  
     ) {

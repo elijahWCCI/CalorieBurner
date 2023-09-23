@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.NoSuchElementException;
 
 @Controller
+@ResponseBody
 public class ExerciseController {
 
     private final ExerciseService exerciseService;
@@ -48,7 +49,7 @@ public class ExerciseController {
 
 
     @PostMapping("/delete")
-    public String deletePet(
+    public String deleteExercise(
         @RequestParam Long deleteId,
         Model page  
     ) {
