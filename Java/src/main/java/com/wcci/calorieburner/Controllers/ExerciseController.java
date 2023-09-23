@@ -36,7 +36,7 @@ public class ExerciseController {
     ) {
         if(name.isBlank() || caloriesBurned == 0) {
             page.addAttribute("invalidInfo", "Please enter correct information to add exercise, including numbers above 0");
-            return "errorAddFood.html";
+            return "errorAddExercise.html";
         }
         ExerciseModel exercise = new ExerciseModel(name, caloriesBurned);
         exerciseService.saveExercise(exercise);

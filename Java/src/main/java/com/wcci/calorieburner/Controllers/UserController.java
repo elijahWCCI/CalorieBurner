@@ -57,8 +57,8 @@ public class UserController {
     // Get a list of all users
     @GetMapping({"", "/", "/home"})
     public String home(Model page) {
-        var virtualPets = userService.findAll();
-        page.addAttribute("pets", virtualPets);
+        var users = userService.findAll();
+        page.addAttribute("users", users);
         return "index.html";
     }
 
