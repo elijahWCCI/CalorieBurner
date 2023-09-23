@@ -1,6 +1,7 @@
 package com.wcci.calorieburner.Services;
 
 import com.wcci.calorieburner.Models.FoodModel;
+import com.wcci.calorieburner.Models.UserModel;
 import com.wcci.calorieburner.Repositories.FoodRepository;
 
 public class FoodService {
@@ -11,7 +12,18 @@ public class FoodService {
         this.foodRepository = foodRepository;
     }
 
-    public Iterable<FoodModel> getAll() {
-        return foodRepository.findAll();
-    }
+        public FoodModel saveFood(FoodModel foodModel) {
+            return foodRepository.save(foodModel);
+        }
+
+
+        public Iterable<FoodModel> findAll() {
+            return foodRepository.findAll();
+           }
+           
+
+        public void deleteFood(Long id) {
+            foodRepository.findById(id).get();
+            foodRepository.deleteById(id);
+           }
 }

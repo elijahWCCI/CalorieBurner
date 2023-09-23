@@ -3,50 +3,106 @@ package com.wcci.calorieburner.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.wcci.calorieburner.Models.ExerciseModel;
 import com.wcci.calorieburner.Models.FoodModel;
+import com.wcci.calorieburner.Models.UserModel;
 import com.wcci.calorieburner.Repositories.FoodRepository;
+import com.wcci.calorieburner.Services.FoodService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/Foods")
+@Controller
 public class FoodController {
 
-    private final FoodRepository foodRepository;
+    private final FoodService foodService;
 
-    @Autowired
-    public FoodController(FoodRepository foodRepository) {
-        this.foodRepository = foodRepository;
+
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
     }
 
-    @GetMapping
-    public List<FoodModel> getAllFoods() {
-        return Streamable.of(foodRepository.findAll()).toList();
+        // Create a new user
+    @PostMapping("/home")
+    public String addPet(
+        @RequestParam String foodName,
+        @RequestParam String imageurl,
+        @RequestParam String foodCategory,
+        @RequestParam int calories,
+        Model page
+    ) {
+        if(foodName.isBlank() || imageurl.isBlank() || calories == 0 || foodCategory.isBlank()) {
+            page.addAttribute("invalidInfo", "Please enter correct information to add food, including numbers above 0");
+            return "errorAddFood.html";
+        }
+        FoodModel food = new FoodModel(foodName, calories, imageurl, foodCategory);
+        foodService.saveFood(food);
+        var foods = foodService.findAll();
+        page.addAttribute("food", foods);
+        return "index.html";
     }
 
-    // @GetMapping("/{id}")
-    // public FoodModel getFoodById(@PathVariable Long id) {
-    //     return foodRepository.findById(id)
-    //             .orElseThrow(() -> new PetNotFoundException(id));
+
+    // Get a list of all users
+    @GetMapping({"", "/", "/home"})
+    public String home(Model page) {
+        var foods = foodService.findAll();
+        page.addAttribute("foods", foods);
+        return "index.html";
+    }
+
+
+    @PostMapping("/delete")
+    public String deletePet(
+        @RequestParam Long deleteId,
+        Model page  
+    ) {
+        foodService.deleteFood(deleteId);
+        var foods = foodService.findAll();
+        page.addAttribute("foods", foods);
+        return "index.html";
+    }
+
+    
+    @ExceptionHandler(NoSuchElementException.class)
+    public String errorOnDelete(HttpServletRequest request, Exception ex, Model page) {
+        String invalidId = request.getParameter("deleteId");
+        page.addAttribute("invalidId", invalidId);
+        return "errorFoodID.html";
+    }
+
+    // @GetMapping
+    // public List<FoodModel> getAllFoods() {
+    //     return Streamable.of(foodRepository.findAll()).toList();
     // }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<FoodModel> getFoodById(@PathVariable Long id) {
-    Optional<FoodModel> food = foodRepository.findById(id);
-        return food.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
+    // // @GetMapping("/{id}")
+    // // public FoodModel getFoodById(@PathVariable Long id) {
+    // //     return foodRepository.findById(id)
+    // //             .orElseThrow(() -> new PetNotFoundException(id));
+    // // }
 
-    @PostMapping
-    public FoodModel addFood(@RequestBody FoodModel food) {
-        return foodRepository.save(food);
-    }
+    // @GetMapping("/{id}")
+    // public ResponseEntity<FoodModel> getFoodById(@PathVariable Long id) {
+    // Optional<FoodModel> food = foodRepository.findById(id);
+    //     return food.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    // }
 
-    @DeleteMapping("/{id}")
-    public void deleteFood(@PathVariable Long id) {
-        foodRepository.deleteById(id);
-    }
+    // @PostMapping
+    // public FoodModel addFood(@RequestBody FoodModel food) {
+    //     return foodRepository.save(food);
+    // }
+
+    // @DeleteMapping("/{id}")
+    // public void deleteFood(@PathVariable Long id) {
+    //     foodRepository.deleteById(id);
+    // }
 }

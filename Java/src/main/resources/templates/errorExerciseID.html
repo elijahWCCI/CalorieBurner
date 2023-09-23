@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xlmns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Exercise Delete Error</title>
+</head>
+<body>
+    <h2>Cannot find an exercise with Id: <span th:text="${invalidId}"></span></h2>
+
+    <form action="/home" method="get">
+        <button type="submit">Click to go home</button>
+    </form>
+</body>
+</html>

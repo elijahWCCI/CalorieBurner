@@ -29,6 +29,18 @@ public class UserService {
             return userRepository.save(userModel);
         }
 
+
+        public Iterable<UserModel> findAll() {
+            return userRepository.findAll();
+           }
+           
+
+        public void deleteUser(Long id) {
+            userRepository.findById(id).get();
+            userRepository.deleteById(id);
+           }
+
+
         public boolean magicFormula() {
             //TODO
             //get the foods the user picks using repo
