@@ -7,7 +7,8 @@ body, h1, h2, h3, p, ul, li, form, button {
 /*background color and default font */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #333;
+    color: #fff;
     background: linear-gradient(to bottom, #ffcc00, #ff6600);
     padding: 20px;
 }
@@ -27,7 +28,8 @@ header {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #000;
+    color:#ccc;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
@@ -36,6 +38,7 @@ header {
 h1, h2, h3 {
     margin-bottom: 20px;
     font-weight: bold;
+    color:#00ff00;
 }
 
 /* Style form elements */
@@ -56,13 +59,14 @@ button[type="button"] {
 }
 
 button[type="button"] {
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #00ff00;
+    color: #000;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3 ease, color 0.3s ease;
 }
 
-/* Style the food options section */
+/*Food options section */
 #foodOptions {
     display: flex;
     flex-wrap: wrap;
@@ -72,8 +76,8 @@ button[type="button"] {
     flex: 0 0 calc(33.33% - 10px); /* Adjust as needed for desired layout */
     margin: 5px;
     padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #00ff00;
+    color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -92,8 +96,8 @@ button[type="button"] {
     display: block;
     margin: 5px 0;
     padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #00ff00;
+    color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
