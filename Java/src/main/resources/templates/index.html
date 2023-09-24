@@ -69,21 +69,21 @@
             <button id="button1" type="button" onclick="setGoalDate()">
               Set Weight Loss Goal Date
             </button>
-            <input type="date" id="goalDate" name="goalDate"/><br /><br />
+            <input type="date" id="goalDate" name="goalDate" /><br /><br />
           </div>
         </form>
 
         <!-- Food Options Section -->
         <h2>Food Options</h2>
-        <div>
-          <tr id="foodOptions" th:each="food:${foods}">
+        <div id="foodOptions">
           <!-- Grains (Carbohydrates) -->
-            <td >
-              <img th:src="${food.imageurl}" height="50px" width="50px"/> 
-              <button onclick="calculateCalories('Bread')" th:text="${food.foodName}" ><img th:src="${food.imageurl}" height="50px" width="50px"/>  </button>
-            </td>
-          </tr>
-                  
+            <div th:each="food:${foods}" class="item" >
+                <ul>
+                  <img th:src="${food.imageurl}" height="40px" width="40px" />
+                  <li th:text="${food.foodName}"></li>
+                </ul>
+            </div>  
+
           <!-- <button onclick="calculateCalories('Rice')">Brown Rice 1 Cup</button>
           <button onclick="calculateCalories('Oatmeal')">
             Oatmeal 1/2 Cup
@@ -111,7 +111,7 @@
           </button> -->
 
           <!-- Fruits -->
-         <!--  <button onclick="calculateCalories('Banana')">Banana</button>
+          <!--  <button onclick="calculateCalories('Banana')">Banana</button>
           <button onclick="calculateCalories('Orange')">Orange</button>
           <button onclick="calculateCalories('Strawberries')">
             Strawberries 1 cup
@@ -123,7 +123,7 @@
           <button onclick="calculateCalories('Apple')">Apple</button>
  -->
           <!-- Dairy (or Dairy Alternatives) -->
-         <!--  <button onclick="calculateCalories('Yogurt')">
+          <!--  <button onclick="calculateCalories('Yogurt')">
             Greek Yogurt (Low-Fat) 6oz
           </button>
           <button onclick="calculateCalories('Cottage Cheese')">
@@ -143,7 +143,7 @@
           </button> -->
 
           <!-- Proteins -->
-       <!--    <button onclick="calculateCalories('Salmon')">Salmon 3.5oz</button>
+          <!--    <button onclick="calculateCalories('Salmon')">Salmon 3.5oz</button>
           <button onclick="calculateCalories('Tofu')">Tofu 3.5oz</button>
           <button onclick="calculateCalories('Chicken Breast')">
             Chicken Breast 3.5oz

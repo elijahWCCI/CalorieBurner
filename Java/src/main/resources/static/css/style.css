@@ -58,6 +58,8 @@
     gap: 50px;
   }
 
+  
+
   #button1 {
     display: block;
     width: 40%;
@@ -121,5 +123,16 @@
 
 #foodOptions,
 #exerciseOptions {
-  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.item {
+  width: 25%;
+  padding: 10px;
+  margin: 20px 20px;
+  background: #52658c;
+  color: #fff;
+  cursor: pointer;
+  gap: 50px;
 }
