@@ -20,7 +20,7 @@ public class DataForFormuladto {
         // this.foods = foods;
         this.height = height;
         this.gender = gender;
-        this.name = name;
+        this.name = "Jose";
         // this.email = email;
     }
 
