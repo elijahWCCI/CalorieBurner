@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.wcci.calorieburner.Models.DataForFormuladto;
 import com.wcci.calorieburner.Models.UserModel;
 import com.wcci.calorieburner.Services.UserService;
 
@@ -28,32 +29,21 @@ public class UserController {
     // Create a new user
     @PostMapping("/adduser")
     public String addUser(
-        @RequestParam String name,
-        @RequestParam String gender,
-        @RequestParam int age,
-        @RequestParam int height,
-        @RequestParam int weight,
-        @RequestParam int targetWeight,
-        @RequestParam Date desiredWeightDate,
-        Model page
+        @ModelAttribute("users") DataForFormuladto dto1, Model page
     ) {
-        if(name.isBlank() || gender.isBlank() || height == 0 || weight == 0 || targetWeight == 0 || desiredWeightDate.equals(null)) {
-            page.addAttribute("invalidInfo", "Please enter correct information to add user, including numbers above 0");
-            return "errorAddUser.html";
+        if(userService.magicFormula(dto1)){
+            return "goodResults.html";
+        } else {
+            return "badResults.html";
         }
-        UserModel user = new UserModel(name, age, gender, height, weight, targetWeight, desiredWeightDate);
-        userService.saveUser(user);
-        var users = userService.findAll();
-        page.addAttribute("user", users);
-        return "index.html";
     }
 
 
     // Get a list of all users
     @GetMapping({"", "/", "/home"})
     public String home(Model page) {
-        var users = userService.findAll();
-        page.addAttribute("users", users);
+        DataForFormuladto dto1 = new DataForFormuladto(0, 0, null, null, 0, false, null, null);
+        page.addAttribute("users", dto1);
         return "index.html";
     }
 
