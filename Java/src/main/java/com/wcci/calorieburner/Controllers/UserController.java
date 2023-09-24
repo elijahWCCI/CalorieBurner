@@ -27,7 +27,7 @@ public class UserController {
 
 
     // Create a new user
-    @PostMapping("/adduser")
+    @PostMapping("/user/adduser")
     public String addUser(
         @ModelAttribute("users") DataForFormuladto dto1, Model page
     ) {
@@ -40,7 +40,7 @@ public class UserController {
 
 
     // Get a list of all users
-    @GetMapping({"", "/", "/home"})
+    @GetMapping({"/home"})
     public String home(Model page) {
         DataForFormuladto dto1 = new DataForFormuladto(0, 0, 0, false, null);
         page.addAttribute("users", dto1);
