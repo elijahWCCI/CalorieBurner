@@ -42,7 +42,7 @@ public class UserController {
     // Get a list of all users
     @GetMapping({"", "/", "/home"})
     public String home(Model page) {
-        DataForFormuladto dto1 = new DataForFormuladto(0, 0, null, null, 0, false, null, null);
+        DataForFormuladto dto1 = new DataForFormuladto(0, 0, 0, false, null);
         page.addAttribute("users", dto1);
         return "index.html";
     }
