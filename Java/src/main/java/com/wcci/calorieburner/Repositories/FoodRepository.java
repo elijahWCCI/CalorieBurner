@@ -1,9 +1,9 @@
-// package com.wcci.calorieburner.Repositories;
+package com.wcci.calorieburner.Repositories;
 
-// import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.CrudRepository;
 
-// import com.wcci.calorieburner.Models.FoodModel;
+import com.wcci.calorieburner.Models.FoodModel;
 
-// public interface FoodRepository extends CrudRepository<FoodModel,Long> {
+public interface FoodRepository extends CrudRepository<FoodModel,Long> {
     
-// }
+}

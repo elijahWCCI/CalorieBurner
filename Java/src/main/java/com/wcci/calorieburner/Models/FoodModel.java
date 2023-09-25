@@ -1,109 +1,50 @@
-// package com.wcci.calorieburner.Models;
+package com.wcci.calorieburner.Models;
 
-// import java.util.Collection;
-// import org.springframework.lang.NonNull;
-// import jakarta.persistence.*;
-// import jakarta.validation.constraints.Size;
+import jakarta.persistence.*;
 
-// @Entity
-// @Table(name = "Foods")
-// public class FoodModel {
-    
-//     @Id @GeneratedValue private Long id;
-    
-//     // @NonNull
-//     @Column(unique = true)
-//     private String foodName;
+@Entity
+ @Table(name = "Foods")
+public class FoodModel {
 
-//     private int calories;
-//     private String foodCategory;
-
-//     // @NonNull
-//     private String imageurl;
-
-//     public FoodModel() {
-//     }
-
-//     public FoodModel(String foodName,int calories, String imageurl, String foodCategory) {
-//         this.foodName = foodName;
-//         this.calories = calories;
-//         this.imageurl = imageurl;
-//         this.foodCategory = foodCategory;
-//     }
-
-//     public Long getId() {
-//         return id;
-//     }
-
-//     public void setId(Long id) {
-//         this.id = id;
-//     }
-
-//     public String getFoodName() {
-//         return foodName;
-//     }
-
-//     public String getFoodCategory() {
-//         return foodCategory;
-//     }
-
-//     public void setFoodName(String foodName) {
-//         this.foodName = foodName;
-//     }
-
-    
-
-//     public int getCalories() {
-//         return calories;
-//     }
-
-//     public void setCalories(int calories) {
-//         this.calories = calories;
-//     }
-
+  @Id 
+  @GeneratedValue 
+  private Long id;
    
+   @Column(unique = true)
+    private String foodName;
 
-//     public String getImageurl() {
-//         return imageurl;
-//     }
+    private int calories;
+    private String foodCategory;
+    private String imageurl;
+   
+    public FoodModel() {
+    }
 
-//     public void setImageurl(String imageurl) {
-//         this.imageurl = imageurl;
-//     }
-    
+    public FoodModel(String foodName, int calories, String foodCategory, String imageurl) {
+        this.foodName = foodName;
+        this.calories = calories;
+        this.foodCategory = foodCategory;
+        this.imageurl = imageurl;
+    }
 
-//     @Override
-//     public int hashCode() {
-//         final int prime = 31;
-//         int result = 1;
-//         result = prime * result + ((foodName == null) ? 0 : foodName.hashCode());
-//         return result;
-//     }
+    public Long getId() {
+        return id;
+    }
 
-//     @Override
-//     public boolean equals(Object obj) {
-//         if (this == obj)
-//             return true;
-//         if (obj == null)
-//             return false;
-//         if (getClass() != obj.getClass())
-//             return false;
-//         FoodModel other = (FoodModel) obj;
-//         if (foodName == null) {
-//             if (other.foodName != null)
-//                 return false;
-//         } else if (!foodName.equals(other.foodName))
-//             return false;
-//         return true;
-//     }
+    public String getFoodName() {
+        return foodName;
+    }
 
-    
+    public int getCalories() {
+        return calories;
+    }
 
-//     @Override
-//     public String toString() {
-//         return "FoodModel [id=" + id + ", foodName=" + foodName + ", calories=" + calories + ", imageurl=" + imageurl;
-//     }
+    public String getFoodCategory() {
+        return foodCategory;
+    }
 
+    public String getImageurl() {
+        return imageurl;
+    }
 
-
-// }
+}
