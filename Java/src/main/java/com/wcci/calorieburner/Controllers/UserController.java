@@ -38,6 +38,10 @@ public class UserController {
     @PostMapping("calculator")
     public String Calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator) {
 
+        if(calculator.getName().contains("k")) {
+            return "BadBurnView";
+        }
+
         return "GoodBurnView";
     }
 
