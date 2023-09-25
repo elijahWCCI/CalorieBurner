@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xlmns:th="http://www.thymeleaf.org">
   <head>
+    <meta charset="ISO-8859-1">
     <title>GitFit</title>
     <link
       href="../static/css/style.css"
@@ -15,7 +16,7 @@
 
         <!-- User Input Section -->
         <h2>User Information</h2>
-        <form action="#" th:action="@{/adduser}" method="post" th:object="${user}">
+        <form action="#" th:action="@{/user/adduser}" method="post" th:object="${users}">
           <div class="userGroup">
             <label for="name">Name:</label>
             <input type="text" th:field="*{name}" required /><br /><br />
@@ -70,13 +71,22 @@
               name="goalDate"
             /><br /><br />
           </div> -->
+
+          <h2>Results</h2>
+          <p id="result"></p>
+          <input
+            id="button1"
+            type="button"
+            value="Submit"
+            onclick="submitUserInfo()"
+          />
         </form>
 
         <!-- Food Options Section -->
-        <h2>Food Options</h2>
-        <div id="foodOptions">
+        <!-- <h2>Food Options</h2>
+        <div id="foodOptions"> -->
           <!-- Grains (Carbohydrates) -->
-          <button onclick="calculateCalories('Bread')">
+          <!-- <button onclick="calculateCalories('Bread')">
             Whole Wheat Bread 1 Slice
           </button>
           <button onclick="calculateCalories('Rice')">Brown Rice 1 Cup</button>
@@ -87,10 +97,10 @@
           <button onclick="calculateCalories('Barley')">Barley 1/2 Cup</button>
           <button onclick="calculateCalories('Cereal')">
             Whole Grain Cereal 1 Cup
-          </button>
+          </button> -->
 
           <!-- Vegetables (Raw) -->
-          <button onclick="calculateCalories('Spinach')">Spinach 1 Cup</button>
+          <!-- <button onclick="calculateCalories('Spinach')">Spinach 1 Cup</button>
           <button onclick="calculateCalories('Carrot')">Carrots 1 Cup</button>
           <button onclick="calculateCalories('Peppers')">
             Bell Peppers 1 Cup
@@ -103,10 +113,10 @@
           </button>
           <button onclick="calculateCalories('Zucchini')">
             Zucchini 1 Cup
-          </button>
+          </button> -->
 
           <!-- Fruits -->
-          <button onclick="calculateCalories('Banana')">Banana</button>
+          <!-- <button onclick="calculateCalories('Banana')">Banana</button>
           <button onclick="calculateCalories('Orange')">Orange</button>
           <button onclick="calculateCalories('Strawberries')">
             Strawberries 1 cup
@@ -115,10 +125,10 @@
             Blueberries 1 cup
           </button>
           <button onclick="calculateCalories('Grapes')">Grapes 1 cup</button>
-          <button onclick="calculateCalories('Apple')">Apple</button>
+          <button onclick="calculateCalories('Apple')">Apple</button> -->
 
           <!-- Dairy (or Dairy Alternatives) -->
-          <button onclick="calculateCalories('Yogurt')">
+          <!-- <button onclick="calculateCalories('Yogurt')">
             Greek Yogurt (Low-Fat) 6oz
           </button>
           <button onclick="calculateCalories('Cottage Cheese')">
@@ -135,10 +145,10 @@
           </button>
           <button onclick="calculateCalories('Whole Milk')">
             Whole Milk 8oz
-          </button>
+          </button> -->
 
           <!-- Proteins -->
-          <button onclick="calculateCalories('Salmon')">Salmon 3.5oz</button>
+          <!-- <button onclick="calculateCalories('Salmon')">Salmon 3.5oz</button>
           <button onclick="calculateCalories('Tofu')">Tofu 3.5oz</button>
           <button onclick="calculateCalories('Chicken Breast')">
             Chicken Breast 3.5oz
@@ -150,10 +160,10 @@
           <button onclick="calculateCalories('Beef')">
             Lean Beef (Sirloin) 3.5oz
           </button>
-        </div>
+        </div> -->
 
         <!-- Exercise Options Section -->
-        <h2>Exercise Options</h2>
+        <!-- <h2>Exercise Options</h2>
         <div id="exerciseOptions">
           <button onclick="calculateCalories('Running')">
             Running (6 mph)
@@ -214,18 +224,11 @@
           <button onclick="calculateCalories('Squat Jumps')">
             Squat Jumps
           </button>
-        </div>
+        </div> -->
 
         <!-- Results Section -->
 
-        <h2>Results</h2>
-        <p id="result"></p>
-        <input
-          id="button1"
-          type="button"
-          value="Submit"
-          onclick="submitUserInfo()"
-        />
+
       </div>
     </div>
   </body>
