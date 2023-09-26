@@ -15,48 +15,48 @@
 
         <!-- User Input Section -->
         <h2>User Information</h2>
-        <form action="#" th:action="@{/adduser}" method="post" th:object="${user}">
-          <div class="userGroup">
+        <form action="#" th:action="@{/adduser}" method="post" th:object="${users}">
+          <h1 th:text="${users.getName()}"></h1>
+          <!-- <div class="userGroup">
             <label for="name">Name:</label>
-            <input type="text" th:field="*{name}" required /><br /><br />
-          </div>
-          <div class="userGroup">
+            <input type="text" th:field="*{name}"  /><br /><br />
+          </div> -->
+          <!-- <div class="userGroup">
             <label for="gender">Gender:</label>
             <input type="radio" th:field="*{gender}" value="Male" />Male
             <input type="radio" th:field="*{gender}" value="Female" />Female<br/><br /><br />
           </div>
-
-          <div class="userGroup">
+ -->
+         <!--  <div class="userGroup">
             <label for="age">Age:</label>
             <input type="number" th:field="*{age}" required /><br /><br />
-          </div>
-          <div class="userGroup">
-            <!-- Current Weight and Target Weight -->
+          </div> -->
+         <!--  <div class="userGroup">
             <label for="currentWeight">Current Weight (in pounds):</label>
             <input
               type="number"
               th:field="*{currentWeight}"
               required
             /><br /><br />
-          </div>
+          </div> -->
 
-          <div class="userGroup">
+          <!-- <div class="userGroup">
             <label for="targetWeight">Target Weight (in pounds):</label>
             <input
               type="number"
               th:field="*{targetWeight}"
               required
             /><br /><br />
-          </div>
+          </div> -->
 
-          <div class="userGroup">
+          <!-- <div class="userGroup">
             <label for="height">Height (in feet):</label>
             <input
               type="number"
               th:field="*{height}"
               required
             /><br /><br />
-          </div>
+          </div> -->
 
           <!-- <div class="userGroup"> -->
             <!-- Set Weight Loss Goal Date -->
@@ -70,6 +70,13 @@
               name="goalDate"
             /><br /><br />
           </div> -->
+          <h2>Results</h2>
+          <p id="result"></p>
+          <input
+            id="button1"
+            type="submit"
+            value="Submit"
+          />
         </form>
 
         <!-- Food Options Section -->
@@ -218,14 +225,7 @@
 
         <!-- Results Section -->
 
-        <h2>Results</h2>
-        <p id="result"></p>
-        <input
-          id="button1"
-          type="button"
-          value="Submit"
-          onclick="submitUserInfo()"
-        />
+       
       </div>
     </div>
   </body>

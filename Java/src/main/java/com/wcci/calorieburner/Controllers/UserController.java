@@ -29,26 +29,26 @@ public class UserController {
     // Create a new user
     @PostMapping("/adduser")
     public String addUser(
-        @ModelAttribute("users") DataForFormuladto dto1, Model page
+        @ModelAttribute("users") DataForFormuladto dto1, Model page 
     ) {
         if(userService.magicFormula(dto1)){
             return "goodResults.html";
         } else {
             return "badResults.html";
-        }
-    }
+        } 
+    } 
 
 
     // Get a list of all users
     @GetMapping({"", "/", "/home"})
     public String home(Model page) {
         DataForFormuladto dto1 = new DataForFormuladto(0, 0, 0, false, null);
-        page.addAttribute("users", dto1);
+        page.addAttribute("users", dto1); 
         return "index.html";
     }
 
 
-    @PostMapping("/delete")
+   /*  @PostMapping("/delete")
     public String deleteUser(
         @RequestParam Long deleteId,
         Model page  
@@ -65,7 +65,7 @@ public class UserController {
         String invalidId = request.getParameter("deleteId");
         page.addAttribute("invalidId", invalidId);
         return "errorUserID.html";
-    }
+    } */
 
     // // Get a user by ID
     // @GetMapping("/{id}")
