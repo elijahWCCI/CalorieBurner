@@ -1,9 +1,9 @@
-// package com.wcci.calorieburner.Repositories;
+package com.wcci.calorieburner.Repositories;
 
-// import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.CrudRepository;
 
-// import com.wcci.calorieburner.Models.ExerciseModel;
+import com.wcci.calorieburner.Models.ExerciseModel;
 
-// public interface ExerciseRepository extends CrudRepository<ExerciseModel,Long> {
+public interface ExerciseRepository extends CrudRepository<ExerciseModel,Long> {
     
-// }
+}
