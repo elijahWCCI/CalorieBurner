@@ -1,4 +1,4 @@
-package com.wcci.calorieburner.Controllers;
+/* package com.wcci.calorieburner.Controllers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -68,3 +68,4 @@ public class CalculatorController {
         return tdee;
     }
 }
+ */
