@@ -2,9 +2,9 @@ package com.wcci.calorieburner.Services;
 
 import org.springframework.stereotype.Service;
 
+import com.wcci.calorieburner.Models.DataForFormuladto;
 import com.wcci.calorieburner.Models.UserModel;
-import com.wcci.calorieburner.Repositories.ExerciseRepository;
-import com.wcci.calorieburner.Repositories.FoodRepository;
+
 import com.wcci.calorieburner.Repositories.UserRepository;
 
 import jakarta.annotation.Resource;
@@ -14,22 +14,34 @@ public class UserService {
 
         @Resource
         private UserRepository userRepository;
-        @Resource
-        private FoodRepository foodRepository;
-        @Resource
-        private ExerciseRepository exerciseRepository;
+        // @Resource
+        // private FoodRepository foodRepository;
+        // @Resource
+        // private ExerciseRepository exerciseRepository;
 
-        public UserService(UserRepository userRepository, FoodRepository foodRepository, ExerciseRepository exerciseRepository) {
+        public UserService(UserRepository userRepository) {
             this.userRepository = userRepository;
-            this.foodRepository = foodRepository;
-            this.exerciseRepository = exerciseRepository;
+            // this.foodRepository = foodRepository;
+            // this.exerciseRepository = exerciseRepository;
         }
 
         public UserModel saveUser(UserModel userModel) {
             return userRepository.save(userModel);
         }
 
-        public boolean magicFormula() {
+
+        public Iterable<UserModel> findAll() {
+            return userRepository.findAll();
+           }
+           
+
+        public void deleteUser(Long id) {
+            userRepository.findById(id).get();
+            userRepository.deleteById(id);
+           }
+
+
+        public boolean magicFormula(DataForFormuladto info) {
             //TODO
             //get the foods the user picks using repo
 
