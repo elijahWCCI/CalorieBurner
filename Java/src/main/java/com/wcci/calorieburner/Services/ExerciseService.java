@@ -1,32 +1,32 @@
-// package com.wcci.calorieburner.Services;
+package com.wcci.calorieburner.Services;
 
-// import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;
 
-// import com.wcci.calorieburner.Models.ExerciseModel;
-// import com.wcci.calorieburner.Models.FoodModel;
-// import com.wcci.calorieburner.Repositories.ExerciseRepository;
+import com.wcci.calorieburner.Models.ExerciseModel;
+import com.wcci.calorieburner.Repositories.ExerciseRepository;
 
-// @Service
-// public class ExerciseService {
-        
-//     private ExerciseRepository exerciseRepository;
+import jakarta.annotation.Resource;
 
-//     public ExerciseService(ExerciseRepository exerciseRepository) {
-//         this.exerciseRepository = exerciseRepository;
-//     }
+@Service
+public class ExerciseService {
 
-//         public ExerciseModel saveExercise(ExerciseModel exerciseModel) {
-//             return exerciseRepository.save(exerciseModel);
-//         }
+    @Resource
+    private ExerciseRepository exerciseRepository;
 
+    public ExerciseService(ExerciseRepository exerciseRepository) {
+        this.exerciseRepository = exerciseRepository;
+    }
 
-//         public Iterable<ExerciseModel> findAll() {
-//             return exerciseRepository.findAll();
-//            }
-           
+    public ExerciseModel saveExercise(ExerciseModel exerciseModel) {
+        return exerciseRepository.save(exerciseModel);
+    }
 
-//         public void deleteExercise(Long id) {
-//             exerciseRepository.findById(id).get();
-//             exerciseRepository.deleteById(id);
-//            }
-// }
+    public Iterable<ExerciseModel> findAll() {
+        return exerciseRepository.findAll();
+    }
+
+    public void deleteExercise(Long id) {
+        exerciseRepository.findById(id).get();
+        exerciseRepository.deleteById(id);
+    }
+}
