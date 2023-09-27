@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.wcci.calorieburner.Models.CalculateCaloriesDto;
 import com.wcci.calorieburner.Models.ExerciseModel;
 import com.wcci.calorieburner.Models.FoodModel;
+import com.wcci.calorieburner.Services.CalculatorCaloriesService;
 import com.wcci.calorieburner.Services.ExerciseService;
 import com.wcci.calorieburner.Services.FoodService;
 
@@ -20,10 +21,13 @@ public class UserController {
 
     private FoodService foodService;
     private ExerciseService exerciseService;
+    private CalculatorCaloriesService calculatorCaloriesService;
 
-    public UserController(FoodService foodService, ExerciseService exerciseService) {
+    public UserController(FoodService foodService, ExerciseService exerciseService,
+            CalculatorCaloriesService calculatorCaloriesService) {
         this.foodService = foodService;
         this.exerciseService = exerciseService;
+        this.calculatorCaloriesService = calculatorCaloriesService;
     }
 
     @RequestMapping("")
@@ -36,26 +40,9 @@ public class UserController {
     }
 
     @PostMapping("calculator")
-    public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator) {
-        // int currentWeight = calculator.getCurrentWeight();
-        // int targetWeight = calculator.getTargetWeight();
-        // int weightDifference = currentWeight - targetWeight;
-        // int acceptableRange = 2;
+    public String Calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator) {
 
-        int totalCaloriesFromFood = 0;
-        int totalCaloriesBurnedFromExercise = 0;
-
-        for (FoodModel foodModel : calculator.getFood()) {
-            totalCaloriesFromFood = totalCaloriesFromFood + foodModel.getCalories();
-        }
-
-        for (ExerciseModel exerciseModel : calculator.getExercise()) {
-            totalCaloriesBurnedFromExercise = totalCaloriesBurnedFromExercise + exerciseModel.getCaloriesBurned();
-        }
-
-        if (totalCaloriesBurnedFromExercise > totalCaloriesFromFood) {
-            return "GoodBurnView";
-        } else {
+        if (calculatorCaloriesService.secretFormula(calculator)) {
             return "BadBurnView";
         }
 
@@ -84,5 +71,9 @@ public class UserController {
     // }
 
     // stevens branch
+
+    // kylesBranch
+
+    // kylesBranch
 
 }
