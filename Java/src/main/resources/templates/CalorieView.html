@@ -1,62 +1,75 @@
 <!DOCTYPE html>
 <html lang="en" xlmns:th="http://www.thymeleaf.org">
-  <head>
-    <title>GitFit</title>
-    <link
-      href="../static/css/style.css"
-      th:href="@{/css/style.css}"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="container">
-      <div class="userForm">
-        <h1>Welcome to the Calorie Burner</h1>
 
-        <!-- User Input Section -->
-        <h2>User Information</h2>
-        <form action="#"  th:action="@{/user/calculator}"  method="post"  th:object="${calculator}" >
+<head>
+  <title>GitFit</title>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
 
-          <div class="userGroup">
-            <label for="name">Name:</label>
-            <input type="text" th:field="*{name}" required />
-          </div>
-          <div class="userGroup">
-            <label for="gender">Gender:</label>
-            <input type="radio" th:field="*{gender}" value="True" />Male
-            <input type="radio" th:field="*{gender}" value="False" />Female
-          </div>
-          <div class="userGroup">
-            <label for="age">Age:</label>
-            <input type="number" th:field="*{age}" required/>
-          </div>
-          <div class="userGroup">
-            <label for="currentWeight">Current Weight (in pounds):</label>
-            <input type="number" th:field="*{currentWeight}" required />
-          </div>
-          <div class="userGroup">
-            <label for="targetWeight">Target Weight (in pounds):</label>
-            <input type="number" th:field="*{targetWeight}" required />
-          </div>
-          <div class="userGroup">
-            <label for="height">Height (in feet):</label>
-            <input type="number" th:field="*{currentHeight}"  required />
-            </div>
-            <div class="userGroup">
-<select role="listbox">
-    <option th:each="i : ${calculator.getFood()}" th:value="${i.getId()}" th:text="${i.getFoodName()}">
-    </option>
-</select>
-<select role="listbox">
-    <option th:each="i : ${calculator.getExercise()}" th:value="${i.getId()}" th:text="${i.getName()}">
-    </option>
-</select>
-            </div>
-          <h2>Results</h2>
-          <p id="result"></p>
-          <input id="button1" type="submit" value="Submit" />
-        </form>
-      </div>
+<body>
+  <div id="container">
+    <div class="userForm">
+      <h1>Welcome to the Calorie Burner</h1>
+
+      <!-- User Input Section -->
+      <h2>User Information</h2>
+      <form action="#" th:action="@{/user/calculator}" method="post" th:object="${calculator}">
+
+        <div class="userGroup">
+          <label for="name">Name:</label>
+          <input type="text" th:field="*{name}" required />
+        </div>
+        <div>
+          <table>
+          <tr>
+            <td>
+              <label for="gender">Gender:</label>
+            </td>
+          </tr>
+          <tr class="tableRow">
+            <td>Male</td>
+            <td><input type="radio" th:field="*{gender}" value="True" /></td>
+          </tr>
+          <tr class="tableRow">
+            <td>Female</td>
+            <td><input type="radio" th:field="*{gender}" value="False" /></td>
+          </tr>
+        </table>
+
+
+        </div>
+        <div class="userGroup">
+          <label for="age">Age:</label>
+          <input type="number" th:field="*{age}" required />
+        </div>
+        <div class="userGroup">
+          <label for="currentWeight">Current Weight (in pounds):</label>
+          <input type="number" th:field="*{currentWeight}" required />
+        </div>
+        <div class="userGroup">
+          <label for="targetWeight">Target Weight (in pounds):</label>
+          <input type="number" th:field="*{targetWeight}" required />
+        </div>
+        <div class="userGroup">
+          <label for="height">Height (in feet):</label>
+          <input type="number" th:field="*{currentHeight}" required />
+        </div>
+        <div class="userGroup">
+          <select role="listbox">
+            <option th:each="i : ${calculator.getFood()}" th:value="${i.getId()}" th:text="${i.getFoodName()}">
+            </option>
+          </select>
+          <select role="listbox">
+            <option th:each="i : ${calculator.getExercise()}" th:value="${i.getId()}" th:text="${i.getName()}">
+            </option>
+          </select>
+        </div>
+        <h2>Results</h2>
+        <p id="result"></p>
+        <input id="button1" type="submit" value="Submit" />
+      </form>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
