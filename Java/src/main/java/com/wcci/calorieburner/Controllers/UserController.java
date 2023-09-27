@@ -30,22 +30,59 @@ public class UserController {
     public String home(Model model) {
         Iterable<FoodModel> food = foodService.findAll();
         Iterable<ExerciseModel> exercise = exerciseService.findAll();
-        CalculateCaloriesDto calculate = new CalculateCaloriesDto(0, 0, 0, 0, false, null,food, exercise);
+        CalculateCaloriesDto calculate = new CalculateCaloriesDto(0, 0, 0, 0, false, null, food, exercise);
         model.addAttribute("calculator", calculate);
         return "CalorieView";
     }
 
     @PostMapping("calculator")
-    public String Calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator) {
+    public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator) {
+        // int currentWeight = calculator.getCurrentWeight();
+        // int targetWeight = calculator.getTargetWeight();
+        // int weightDifference = currentWeight - targetWeight;
+        // int acceptableRange = 2;
 
-        if(calculator.getName().contains("k")) {
+        int totalCaloriesFromFood = 0;
+        int totalCaloriesBurnedFromExercise = 0;
+
+        for (FoodModel foodModel : calculator.getFood()) {
+            totalCaloriesFromFood = totalCaloriesFromFood + foodModel.getCalories();
+        }
+
+        for (ExerciseModel exerciseModel : calculator.getExercise()) {
+            totalCaloriesBurnedFromExercise = totalCaloriesBurnedFromExercise + exerciseModel.getCaloriesBurned();
+        }
+
+        if (totalCaloriesBurnedFromExercise > totalCaloriesFromFood) {
+            return "GoodBurnView";
+        } else {
             return "BadBurnView";
         }
 
-        return "GoodBurnView";
+        // double calculateBMI = calculateBMI(calculator.getCurrentHeight(),
+        // calculator.getCurrentWeight());
+        // if(calculateBMI <=18.5) {
+        // return "GoodBurnView";
+        // } else if(calculateBMI >=18.5 && calculateBMI <=24.9) {
+        // return "GoodBurnView";
+        // } else if(calculateBMI >=25) {
+        // return "BadBurnView";
+        // } else {
+        // return "BadBurnView";
+        // }
+        //
+
+        // if (Math.abs(weightDifference) <= acceptableRange) {
+        // return "GoodBurnView";
+        // } else {
+        // return "BadBurnView";
+        // }
     }
 
+    // private double calculateBMI(double height, double weight) {
+    // return weight / (height * height);
+    // }
 
-    //stevens branch
+    // stevens branch
 
 }
