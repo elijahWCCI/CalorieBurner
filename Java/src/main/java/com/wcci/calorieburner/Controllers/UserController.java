@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.wcci.calorieburner.Models.CalculateCaloriesDto;
 import com.wcci.calorieburner.Models.ExerciseModel;
 import com.wcci.calorieburner.Models.FoodModel;
+import com.wcci.calorieburner.Services.CalculatorCaloriesService;
 import com.wcci.calorieburner.Services.ExerciseService;
 import com.wcci.calorieburner.Services.FoodService;
 
@@ -20,10 +21,12 @@ public class UserController {
 
     private FoodService foodService;
     private ExerciseService exerciseService;
+    private CalculatorCaloriesService calculatorCaloriesService;
 
-    public UserController(FoodService foodService, ExerciseService exerciseService) {
+    public UserController(FoodService foodService, ExerciseService exerciseService, CalculatorCaloriesService calculatorCaloriesService) {
         this.foodService = foodService;
         this.exerciseService = exerciseService;
+        this.calculatorCaloriesService = calculatorCaloriesService;
     }
 
     @RequestMapping("")
@@ -38,7 +41,7 @@ public class UserController {
     @PostMapping("calculator")
     public String Calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator) {
 
-        if(calculator.getName().contains("k")) {
+        if(calculatorCaloriesService.secretFormula(calculator)) {
             return "BadBurnView";
         }
 

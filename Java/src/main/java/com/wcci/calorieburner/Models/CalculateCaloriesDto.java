@@ -1,5 +1,6 @@
 package com.wcci.calorieburner.Models;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class CalculateCaloriesDto {
@@ -11,6 +12,8 @@ public class CalculateCaloriesDto {
     private String name;
     private Iterable<FoodModel> food;
     private Iterable<ExerciseModel> exercise;
+    private HashMap<String, Integer> foodList;
+    private HashMap<String, Integer> exerciseList;
 
     public CalculateCaloriesDto(int currentWeight, int targetWeight, int age, int currentHeight, boolean gender,
             String name,Iterable<FoodModel> food, Iterable<ExerciseModel> exercise) {
@@ -22,6 +25,8 @@ public class CalculateCaloriesDto {
         this.name = name;
         this.food = food;
         this.exercise = exercise;
+        this.foodList = new HashMap<String, Integer>();
+        this.exerciseList = new HashMap<String, Integer>();
     }
 
     public Iterable<ExerciseModel> getExercise(){
@@ -48,6 +53,14 @@ public class CalculateCaloriesDto {
     }
     public String getName() {
         return name;
+    }
+
+    public HashMap<String, Integer> getFoodList() {
+        return foodList;
+    }
+
+    public HashMap<String, Integer> getExerciseList() {
+        return exerciseList;
     }
 
     
