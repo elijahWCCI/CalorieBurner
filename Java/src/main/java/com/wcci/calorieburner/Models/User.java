@@ -15,8 +15,7 @@ public class User {
     private boolean gender;
     private int age;
     private int currentWeight;
-    private int targetWeight;
-    private int currentHeight;
+    private double currentHeight;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<SelectedFood> selectedFoods = new ArrayList<>();
@@ -64,19 +63,11 @@ public class User {
         this.currentWeight = currentWeight;
     }
 
-    public int getTargetWeight() {
-        return targetWeight;
-    }
-
-    public void setTargetWeight(int targetWeight) {
-        this.targetWeight = targetWeight;
-    }
-
-    public int getCurrentHeight() {
+    public double getCurrentHeight() {
         return currentHeight;
     }
 
-    public void setCurrentHeight(int currentHeight) {
+    public void setCurrentHeight(double currentHeight) {
         this.currentHeight = currentHeight;
     }
 
@@ -100,13 +91,12 @@ public class User {
         super();
     }
 
-    public User(String name, boolean gender, int age, int currentWeight, int targetWeight, int currentHeight) {
+    public User(String name, boolean gender, int age, int currentWeight, double currentHeight) {
         super();
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.currentWeight = currentWeight;
-        this.targetWeight = targetWeight;
         this.currentHeight = currentHeight;
     }
 

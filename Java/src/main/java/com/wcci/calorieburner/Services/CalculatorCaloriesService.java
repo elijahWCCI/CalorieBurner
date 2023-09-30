@@ -1,6 +1,7 @@
 package com.wcci.calorieburner.Services;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,12 +37,12 @@ public class CalculatorCaloriesService {
     public boolean secretFormula(CalculateCaloriesDto dto) {
 
         Iterable<ExerciseModel> formExerciseModel = formExerciseModel(dto.getUserSelectedExercise());
-        Iterable<FoodModel> formFoodModel = formFoodModel(dto.getUserFoodSelected());
 
-        User user = new User(dto.getName(), dto.isGender(), dto.getAge(), dto.getCurrentWeight(), dto.getTargetWeight(),
+        User userData = new User(dto.getName(), dto.isGender(), dto.getAge(), dto.getCurrentWeight(),
                 dto.getCurrentHeight());
 
-        saveSelectedFoodsAndExerciseToUser(dto.getUserFoodSelected(), dto.getUserSelectedExercise(), user);
+        User user = saveSelectedFoodsAndExerciseToUser(dto.getUserFoodSelected(), dto.getUserSelectedExercise(),
+                userData);
         // save user details
 
         // Calculate TDEE using BMR and activity level
@@ -49,7 +50,7 @@ public class CalculatorCaloriesService {
                 formExerciseModel);
         System.out.println("========TDEE========>" + tdee);
         // Calculate total calories from food
-        int totalCaloriesFromFood = calculateTotalCaloriesFromFood(formFoodModel);
+        int totalCaloriesFromFood = calculateTotalCaloriesFromFood(user.getSelectedFoods());
         System.out.println("========totalCaloriesFromFood========>" + totalCaloriesFromFood);
         System.out.println("========Overall Result========>" + (tdee >= totalCaloriesFromFood));
         // Compare TDEE with total calories from food
@@ -70,12 +71,12 @@ public class CalculatorCaloriesService {
     }
 
     // Calculate total calories from food
-    private static int calculateTotalCaloriesFromFood(Iterable<FoodModel> foods) {
+    private static int calculateTotalCaloriesFromFood(List<SelectedFood> list) {
         int totalCaloriesFromFood = 0;
 
         // Sum up the calories from each food item
-        for (FoodModel foodModel : foods) {
-            totalCaloriesFromFood += foodModel.getCalories();
+        for (SelectedFood foodModel : list) {
+            totalCaloriesFromFood += foodModel.getFoodId().getCalories() * foodModel.getQuantity();
         }
 
         return totalCaloriesFromFood;
@@ -130,11 +131,6 @@ public class CalculatorCaloriesService {
     private Iterable<ExerciseModel> formExerciseModel(List<SelectedExerciseDto> dtoList) {
         List<Long> exerciseIds = dtoList.stream().map(SelectedExerciseDto::getExerciseId).collect(Collectors.toList());
         return exerciseRepo.findAllById(exerciseIds);
-    }
-
-    private Iterable<FoodModel> formFoodModel(List<SelectedFoodDto> dtoList) {
-        List<Long> foodIds = dtoList.stream().map(SelectedFoodDto::getFoodId).collect(Collectors.toList());
-        return foodRepo.findAllById(foodIds);
     }
 
     private User saveSelectedFoodsAndExerciseToUser(List<SelectedFoodDto> dtoList,

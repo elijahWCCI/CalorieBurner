@@ -5,9 +5,8 @@ import java.util.List;
 
 public class CalculateCaloriesDto {
     private int currentWeight;
-    private int targetWeight;
     private int age;
-    private int currentHeight;
+    private double currentHeight;
     private boolean gender;
     private String name;
     private List<SelectedFoodDto> userFoodSelected;
@@ -19,10 +18,9 @@ public class CalculateCaloriesDto {
     public CalculateCaloriesDto() {
     }
 
-    public CalculateCaloriesDto(int currentWeight, int targetWeight, int age, int currentHeight, boolean gender,
+    public CalculateCaloriesDto(int currentWeight, int age, double currentHeight, boolean gender,
             String name, Iterable<FoodModel> foods, Iterable<ExerciseModel> exercises) {
         this.currentWeight = currentWeight;
-        this.targetWeight = targetWeight;
         this.age = age;
         this.currentHeight = currentHeight;
         this.gender = gender;
@@ -44,14 +42,6 @@ public class CalculateCaloriesDto {
         this.currentWeight = currentWeight;
     }
 
-    public int getTargetWeight() {
-        return targetWeight;
-    }
-
-    public void setTargetWeight(int targetWeight) {
-        this.targetWeight = targetWeight;
-    }
-
     public int getAge() {
         return age;
     }
@@ -60,11 +50,11 @@ public class CalculateCaloriesDto {
         this.age = age;
     }
 
-    public int getCurrentHeight() {
+    public double getCurrentHeight() {
         return currentHeight;
     }
 
-    public void setCurrentHeight(int currentHeight) {
+    public void setCurrentHeight(double currentHeight) {
         this.currentHeight = currentHeight;
     }
 
