@@ -59,5 +59,7 @@ public class UserController {
         return "BadBurnView";
 
         // return "redirect:/error";
+
+        //kyle branch
     }
 }
