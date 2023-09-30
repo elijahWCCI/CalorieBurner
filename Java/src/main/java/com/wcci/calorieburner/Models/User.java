@@ -5,9 +5,10 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -22,5 +23,91 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<SelectedExercise> selectedExercises = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getCurrentWeight() {
+        return currentWeight;
+    }
+
+    public void setCurrentWeight(int currentWeight) {
+        this.currentWeight = currentWeight;
+    }
+
+    public int getTargetWeight() {
+        return targetWeight;
+    }
+
+    public void setTargetWeight(int targetWeight) {
+        this.targetWeight = targetWeight;
+    }
+
+    public int getCurrentHeight() {
+        return currentHeight;
+    }
+
+    public void setCurrentHeight(int currentHeight) {
+        this.currentHeight = currentHeight;
+    }
+
+    public List<SelectedFood> getSelectedFoods() {
+        return selectedFoods;
+    }
+
+    public void setSelectedFoods(List<SelectedFood> selectedFoods) {
+        this.selectedFoods = selectedFoods;
+    }
+
+    public List<SelectedExercise> getSelectedExercises() {
+        return selectedExercises;
+    }
+
+    public void setSelectedExercises(List<SelectedExercise> selectedExercises) {
+        this.selectedExercises = selectedExercises;
+    }
+
+    public User() {
+        super();
+    }
+
+    public User(String name, boolean gender, int age, int currentWeight, int targetWeight, int currentHeight) {
+        super();
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.currentWeight = currentWeight;
+        this.targetWeight = targetWeight;
+        this.currentHeight = currentHeight;
+    }
 
 }

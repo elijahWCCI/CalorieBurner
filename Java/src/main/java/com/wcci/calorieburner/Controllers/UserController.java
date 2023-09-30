@@ -61,31 +61,38 @@ public class UserController {
          * System.out.println("########################"); }
          */
 
-        for (SelectedExerciseDto dto : calculator.getUserSelectedExercise()) {
-            System.out.println("########################");
-            System.out.println("====>" + dto.getExerciseId());
-            System.out.println("########################");
-        }
-        if (params.containsKey("addToFoodList")) {
-            // Handle logic to add to the list of selected food with quantity
-            long foodId = Long.parseLong((String) params.get("foodSelection"));
-            int foodQuantity = Integer.parseInt((String) params.get("foodQuantity"));
-            calculator.addToSelectedFoods(foodService.getByFoodId(foodId), foodQuantity);
-            return "redirect:/user";
-        } else if (params.containsKey("addToExerciseList")) {
-            // Handle logic to add to the list of selected exercises with quantity
-            long exerciseId = Long.parseLong((String) params.get("exerciseSelection"));
-            int exerciseQuantity = Integer.parseInt((String) params.get("exerciseQuantity"));
-            calculator.addToSelectedExercises(exerciseService.getExerciseById(exerciseId), exerciseQuantity);
-            return "redirect:/user";
-        } else if (params.containsKey("submitForm")) {
-            // Handle regular form submission logic
-            if (calculatorCaloriesService.secretFormula(calculator)) {
-                return "BadBurnView";
-            }
+        // for(SelectedExerciseDto dto: calculator.getUserSelectedExercise()) {
+        // System.out.println("########################");
+        // System.out.println("====>"+dto.getExerciseId());
+        // System.out.println("########################");
+        // }
+        // if (params.containsKey("addToFoodList")) {
+        // // Handle logic to add to the list of selected food with quantity
+        // long foodId = Long.parseLong((String) params.get("foodSelection"));
+        // int foodQuantity = Integer.parseInt((String) params.get("foodQuantity"));
+        // calculator.addToSelectedFoods(foodService.getByFoodId(foodId), foodQuantity);
+        // return "redirect:/user";
+        // } else if (params.containsKey("addToExerciseList")) {
+        // // Handle logic to add to the list of selected exercises with quantity
+        // long exerciseId = Long.parseLong((String) params.get("exerciseSelection"));
+        // int exerciseQuantity = Integer.parseInt((String)
+        // params.get("exerciseQuantity"));
+        // calculator.addToSelectedExercises(exerciseService.getExerciseById(exerciseId),
+        // exerciseQuantity);
+        // return "redirect:/user";
+        // } else if (params.containsKey("submitForm")) {
+        // // Handle regular form submission logic
+        // if (calculatorCaloriesService.secretFormula(calculator)) {
+        // return "BadBurnView";
+        // }
+        // return "GoodBurnView";
+        // }
+
+        if (calculatorCaloriesService.secretFormula(calculator)) {
             return "GoodBurnView";
         }
+        return "BadBurnView";
 
-        return "redirect:/error";
+        // return "redirect:/error";
     }
 }
