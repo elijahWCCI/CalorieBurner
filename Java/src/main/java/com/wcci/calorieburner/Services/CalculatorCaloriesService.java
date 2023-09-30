@@ -128,6 +128,8 @@ public class CalculatorCaloriesService {
         return bmr * activityLevel;
     }
 
+    // Using stream API to transform list of objects into list of Long exercise IDs
+    // Using map to extract exerciseId's from SelectedExerciseDTO
     private Iterable<ExerciseModel> formExerciseModel(List<SelectedExerciseDto> dtoList) {
         List<Long> exerciseIds = dtoList.stream().map(SelectedExerciseDto::getExerciseId).collect(Collectors.toList());
         return exerciseRepo.findAllById(exerciseIds);
