@@ -1,16 +1,18 @@
 package com.wcci.calorieburner.Controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wcci.calorieburner.Models.CalculateCaloriesDto;
-import com.wcci.calorieburner.Models.ExerciseModel;
-import com.wcci.calorieburner.Models.FoodModel;
+import com.wcci.calorieburner.Models.SelectedExerciseDto;
+import com.wcci.calorieburner.Models.SelectedFoodDto;
 import com.wcci.calorieburner.Services.CalculatorCaloriesService;
 import com.wcci.calorieburner.Services.ExerciseService;
 import com.wcci.calorieburner.Services.FoodService;
@@ -32,48 +34,58 @@ public class UserController {
 
     @RequestMapping("")
     public String home(Model model) {
-        Iterable<FoodModel> food = foodService.findAll();
-        Iterable<ExerciseModel> exercise = exerciseService.findAll();
-        CalculateCaloriesDto calculate = new CalculateCaloriesDto(0, 0, 0, 0, false, null, food, exercise);
+        CalculateCaloriesDto calculate = new CalculateCaloriesDto(
+                0, 0, 0, 0, false, null, foodService.findAll(), exerciseService.findAll());
         model.addAttribute("calculator", calculate);
         return "CalorieView";
     }
-
-    @PostMapping("calculator")
-    public String Calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator) {
-
-        if (calculatorCaloriesService.secretFormula(calculator)) {
-            return "BadBurnView";
-        }
-
-        // double calculateBMI = calculateBMI(calculator.getCurrentHeight(),
-        // calculator.getCurrentWeight());
-        // if(calculateBMI <=18.5) {
-        // return "GoodBurnView";
-        // } else if(calculateBMI >=18.5 && calculateBMI <=24.9) {
-        // return "GoodBurnView";
-        // } else if(calculateBMI >=25) {
-        // return "BadBurnView";
-        // } else {
-        // return "BadBurnView";
-        // }
-        //
-
-        // if (Math.abs(weightDifference) <= acceptableRange) {
-        // return "GoodBurnView";
-        // } else {
-        // return "BadBurnView";
-        // }
-    }
-
-    // private double calculateBMI(double height, double weight) {
-    // return weight / (height * height);
+    //
+    // @PostMapping("addFoodListToUser")
+    // public String saveFoodListByUser(@ModelAttribute("foodList") SelectedFoodDto
+    // foodDto) {
+    //
+    //
+    // return "CalorieView";
     // }
 
-    // stevens branch
+    @PostMapping("calculator")
+    public String Calculator(
+            @ModelAttribute("calculator") CalculateCaloriesDto calculator,
+            @RequestParam Map<String, Object> params) {
 
-    // kylesBranch
+        /*
+         * for(SelectedFoodDto dto: calculator.getUserFoodSelected()) {
+         * System.out.println("########################");
+         * System.out.println("====>"+dto.getFoodId());
+         * System.out.println("====>"+dto.getQuantity());
+         * System.out.println("########################"); }
+         */
 
-    // kylesBranch
+        for (SelectedExerciseDto dto : calculator.getUserSelectedExercise()) {
+            System.out.println("########################");
+            System.out.println("====>" + dto.getExerciseId());
+            System.out.println("########################");
+        }
+        if (params.containsKey("addToFoodList")) {
+            // Handle logic to add to the list of selected food with quantity
+            long foodId = Long.parseLong((String) params.get("foodSelection"));
+            int foodQuantity = Integer.parseInt((String) params.get("foodQuantity"));
+            calculator.addToSelectedFoods(foodService.getByFoodId(foodId), foodQuantity);
+            return "redirect:/user";
+        } else if (params.containsKey("addToExerciseList")) {
+            // Handle logic to add to the list of selected exercises with quantity
+            long exerciseId = Long.parseLong((String) params.get("exerciseSelection"));
+            int exerciseQuantity = Integer.parseInt((String) params.get("exerciseQuantity"));
+            calculator.addToSelectedExercises(exerciseService.getExerciseById(exerciseId), exerciseQuantity);
+            return "redirect:/user";
+        } else if (params.containsKey("submitForm")) {
+            // Handle regular form submission logic
+            if (calculatorCaloriesService.secretFormula(calculator)) {
+                return "BadBurnView";
+            }
+            return "GoodBurnView";
+        }
 
+        return "redirect:/error";
+    }
 }

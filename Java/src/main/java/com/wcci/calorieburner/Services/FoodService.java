@@ -28,4 +28,8 @@ public class FoodService {
         foodRepository.findById(id).get();
         foodRepository.deleteById(id);
     }
+
+    public FoodModel getByFoodId(Long id) {
+        return foodRepository.findById(id).get();
+    }
 }
