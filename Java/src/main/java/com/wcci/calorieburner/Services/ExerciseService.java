@@ -25,8 +25,8 @@ public class ExerciseService {
         return exerciseRepository.findAll();
     }
 
-    public void deleteExercise(Long id) {
-        exerciseRepository.findById(id).get();
-        exerciseRepository.deleteById(id);
+    public ExerciseModel findExerciseById(Long id) {
+        return exerciseRepository.findById(id).get();
+
     }
 }

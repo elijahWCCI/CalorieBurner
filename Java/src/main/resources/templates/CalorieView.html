@@ -13,11 +13,11 @@
 
       <!-- User Input Section -->
       <h2>User Information</h2>
-      <form action="#" th:action="@{/user/calculator}" method="post" th:object="${calculator}">
+      <form action="#" th:action="@{/calculator}" method="post" th:object="${calculator}">
 
         <div class="userGroup">
           <label for="name">Name:</label>
-          <input type="text" th:field="*{name}" required />
+          <input type="text" th:field="*{name}"  />
         </div>
         <div>
           <table>
@@ -40,7 +40,7 @@
         </div>
         <div class="userGroup">
           <label for="age">Age:</label>
-          <input type="number" th:field="*{age}" required />
+          <input type="number" th:field="*{age}" value="" required />
         </div>
         <div class="userGroup">
           <label for="currentWeight">Current Weight (in pounds):</label>
@@ -54,20 +54,34 @@
           <label for="height">Height (in feet):</label>
           <input type="number" th:field="*{currentHeight}" required />
         </div>
-        <div class="userGroup">
-          <select role="listbox">
-            <option th:each="i : ${calculator.getFood()}" th:value="${i.getId()}" th:text="${i.getFoodName()}">
-            </option>
-          </select>
-          <select role="listbox">
-            <option th:each="i : ${calculator.getExercise()}" th:value="${i.getId()}" th:text="${i.getName()}">
-            </option>
-          </select>
-        </div>
         <h2>Results</h2>
         <p id="result"></p>
         <input id="button1" type="submit" value="Submit" />
       </form>
+
+      <div class="userGroup">
+        <div class="userGroup">
+          <form action="/addExercise"  method="post" th:object="${calculator}">
+            <select role="listbox" name="id">
+              <option th:each="i : ${calculator.getExercise()}" th:value="${i.getId()}" th:text="${i.getName()}" >
+              </option>
+            </select>
+            <button id="button1" type="submit" value="Submit">Add Exercise</button>
+          </form>
+        </div>
+
+
+        <div class="userGroup">
+        <form action="/addFood"  method="post" th:object="${calculator}"> 
+          <select role="listbox" name="id">
+            <option th:each="i : ${calculator.getFood()}" th:value="${i.getId()}" th:text="${i.getFoodName()}"></option>
+          </select>
+          <button id="button1" type="submit" value="Submit"> Add Food</button>
+        </form>
+        </div>
+       
+        </div>
+
     </div>
   </div>
 </body>

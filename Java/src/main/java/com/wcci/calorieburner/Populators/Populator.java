@@ -22,6 +22,7 @@ public class Populator implements CommandLineRunner{
         private FoodRepository fRepository;
         @Resource
         private ExerciseRepository eRepository;
+        
 
         private Date d1 = new Date();
 

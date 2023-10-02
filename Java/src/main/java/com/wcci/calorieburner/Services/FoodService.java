@@ -24,8 +24,7 @@ public class FoodService {
         return foodRepository.findAll();
     }
 
-    public void deleteFood(Long id) {
-        foodRepository.findById(id).get();
-        foodRepository.deleteById(id);
+    public FoodModel findFoodById(Long id) {
+        return foodRepository.findById(id).get();
     }
 }

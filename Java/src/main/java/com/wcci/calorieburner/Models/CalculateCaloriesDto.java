@@ -15,7 +15,7 @@ public class CalculateCaloriesDto {
     private HashMap<String, Integer> foodList;
     private HashMap<String, Integer> exerciseList;
 
-    public CalculateCaloriesDto(int currentWeight, int targetWeight, int age, int currentHeight, boolean gender,
+     public CalculateCaloriesDto(int currentWeight, int targetWeight, int age, int currentHeight, boolean gender,
             String name,Iterable<FoodModel> food, Iterable<ExerciseModel> exercise) {
         this.currentWeight = currentWeight;
         this.targetWeight = targetWeight;
@@ -28,6 +28,11 @@ public class CalculateCaloriesDto {
         this.foodList = new HashMap<String, Integer>();
         this.exerciseList = new HashMap<String, Integer>();
     }
+
+  /*    public CalculateCaloriesDto(Iterable<FoodModel> food, Iterable<ExerciseModel> exercise) {
+        this.foodList = new HashMap<String, Integer>();
+        this.exerciseList = new HashMap<String, Integer>();
+    } */
 
     public Iterable<ExerciseModel> getExercise(){
         return this.exercise;
@@ -63,6 +68,25 @@ public class CalculateCaloriesDto {
         return exerciseList;
     }
 
+    public void addFood(Long id){
+        for(FoodModel selected : food){
+            if(selected.getId().equals(id)){
+                foodList.put(selected.getId().toString(), selected.getCalories());
+                return;
+            }
+        }
+    }
+
+    public void addExercise(Long id){
+        for(ExerciseModel selected : exercise){
+            if(selected.getId().equals(id)){
+                foodList.put(selected.getId().toString(), selected.getCaloriesBurned());
+                return;
+            }
+        }
+    }
+
     
 
+   
 }
