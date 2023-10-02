@@ -64,35 +64,10 @@ public class UserController {
     @PostMapping("calculator")
     public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator,
             @RequestParam Map<String, Object> params) {
-        List<SelectedFoodDto> userFoodSelected = calculator.getUserFoodSelected();
-        List<SelectedExerciseDto> userSelectedExercise = calculator.getUserSelectedExercise();
-
-        if (userSelectedExercise.size() >= 1 && userFoodSelected.size() > 2) {
+        if (calculatorCaloriesService.secretFormula(calculator)) {
             return "GoodBurnView";
         }
-
         return "BadBurnView";
+
     }
-    // @PostMapping("calculator")
-    // public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto
-    // calculator,
-    // @RequestParam Map<String, Object> params) {
-
-    // if (calculator != null &&
-    // calculatorCaloriesService.secretFormula(calculator)) {
-    // List<SelectedFoodDto> userFoodSelected = calculator.getUserFoodSelected();
-    // if (userFoodSelected != null && userFoodSelected.size() > 2) {
-    // return "GoodBurnView";
-    // }
-    // }
-    // return "BadBurnView";
-    // }
-
-    // if (calculator.getUserFoodSelected().size() > 2) {
-    // return "GoodBurnView";
-    // }
-    // return "BadBurnView";
-
-    // return "redirect:/error";
-
 }
