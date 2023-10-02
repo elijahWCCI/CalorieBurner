@@ -9,11 +9,11 @@ public class CalculateCaloriesDto {
     private double currentHeight;
     private boolean gender;
     private String name;
-    private List<SelectedFoodDto> userFoodSelected;
-    private List<SelectedExerciseDto> userSelectedExercise;
+    private List<SelectedFoodDto> userFoodSelected; // stored in DTO
+    private List<SelectedExerciseDto> userSelectedExercise; // stored in DTO
 
-    private List<SelectedFood> selectedFoods = new ArrayList<>();
-    private List<SelectedExercise> selectedExercises = new ArrayList<>();
+    private List<SelectedFood> selectedFoods = new ArrayList<>(); // stored in DB
+    private List<SelectedExercise> selectedExercises = new ArrayList<>(); // stored in DB
 
     public CalculateCaloriesDto() {
     }

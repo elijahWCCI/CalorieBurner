@@ -27,7 +27,7 @@
             fieldHTML = fieldHTML + "<option value='" + foodItems[i].foodId.id + "'>" + foodItems[i].foodId.foodName + "</option>";
             //console.log(foodItems[i]);
           }
-          fieldHTML = fieldHTML + "</select>&nbsp;<input type='number' min=0 style='padding: 6px;font-size: 15px;border-radius: 5px' name='userFoodSelected[" + x + "].quantity' placeholder='Quantity' /><a href='javascript:void(0);' class='remove_button'><span style='margin-left: 10px;cursor: pointer; background-color: #f9f9f9; padding: 5px;font-size: 20px;font-weight: bold;	border: thin solid #d4d4d4;border-radius: 5px'>- </span></a></div>";
+          fieldHTML = fieldHTML + "</select>&nbsp;<input type='number' min=0 style='padding: 6px;font-size: 15px;border-radius: 5px' name='userFoodSelected[" + x + "].quantity' placeholder='Quantity' required/><a href='javascript:void(0);' class='remove_button'><span style='margin-left: 10px;cursor: pointer; background-color: #f9f9f9; padding: 5px;font-size: 20px;font-weight: bold;	border: thin solid #d4d4d4;border-radius: 5px'>- </span></a></div>";
           x++; //Increase field counter
           $(wrapper).append(fieldHTML); //Add field html
 
@@ -146,7 +146,7 @@
               <option th:each="foodItem : ${calculator.selectedFoods}" th:value="${foodItem.foodId.id}"
                 th:text="${foodItem.foodId.foodName}"></option>
             </select>
-            <input type="number" min=0 class="userGroup" th:field="*{userFoodSelected[0].quantity}"
+            <input type="number" min=0 class="userGroup" th:field="*{userFoodSelected[0].quantity} "
               placeholder="Quantity" style="padding: 6px;font-size: 15px;border-radius: 5px" />
             <a href="javascript:void(0);" class="add_button" title="Add field"><span
                 style="margin-left: 10px;cursor: pointer; background-color: #f9f9f9; padding: 5px;font-size: 20px;font-weight: bold;	border: thin solid #d4d4d4;border-radius: 5px ">+</span></a>

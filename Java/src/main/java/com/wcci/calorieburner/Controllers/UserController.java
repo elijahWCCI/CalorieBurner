@@ -35,10 +35,23 @@ public class UserController {
     @RequestMapping("")
     public String home(Model model) {
         CalculateCaloriesDto calculate = new CalculateCaloriesDto(
-                0, 0, 0, false, null, foodService.findAll(), exerciseService.findAll());
+                0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());
         model.addAttribute("calculator", calculate);
         return "CalorieView";
     }
+
+    // @PostMapping("calculator")
+    // public String Calculator(
+    // @ModelAttribute("calculator") CalculateCaloriesDto calculator,
+    // @RequestParam Map<String, Object> params) {
+
+    // if (calculator.getUserFoodSelected().size() > 2) {
+    // return "GoodBurnView";
+    // }
+    // return "BadBurnView";
+
+    // }
+
     //
     // @PostMapping("addFoodListToUser")
     // public String saveFoodListByUser(@ModelAttribute("foodList") SelectedFoodDto
@@ -49,15 +62,37 @@ public class UserController {
     // }
 
     @PostMapping("calculator")
-    public String Calculator(
-            @ModelAttribute("calculator") CalculateCaloriesDto calculator,
+    public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator,
             @RequestParam Map<String, Object> params) {
+        List<SelectedFoodDto> userFoodSelected = calculator.getUserFoodSelected();
+        List<SelectedExerciseDto> userSelectedExercise = calculator.getUserSelectedExercise();
 
-        if (calculatorCaloriesService.secretFormula(calculator)) {
+        if (userSelectedExercise.size() >= 1 && userFoodSelected.size() > 2) {
             return "GoodBurnView";
         }
-        return "BadBurnView";
 
-        // return "redirect:/error";
+        return "BadBurnView";
     }
+    // @PostMapping("calculator")
+    // public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto
+    // calculator,
+    // @RequestParam Map<String, Object> params) {
+
+    // if (calculator != null &&
+    // calculatorCaloriesService.secretFormula(calculator)) {
+    // List<SelectedFoodDto> userFoodSelected = calculator.getUserFoodSelected();
+    // if (userFoodSelected != null && userFoodSelected.size() > 2) {
+    // return "GoodBurnView";
+    // }
+    // }
+    // return "BadBurnView";
+    // }
+
+    // if (calculator.getUserFoodSelected().size() > 2) {
+    // return "GoodBurnView";
+    // }
+    // return "BadBurnView";
+
+    // return "redirect:/error";
+
 }
