@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: #344a72;
+  color: #fff;
+  line-height: 1.8;
+}
+
+a {
+  text-decoration: none;
+}
+
+#container {
+  margin: 30px auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.userForm {
+  background: #fff;
+  padding: 15px 25px;
+  color: #333;
+}
+
+.userForm h1,
+.userForm p {
+  text-align: center;
+}
+
+.userForm .userGroup{
+  margin-top: 4px;
+}
+
+.userForm .userGroup label {
+  display: block;
+  color: #666;
+}
+
+.userForm .userGroup input {
+  width: 100%;
+  padding: 10px;
+  border: #ddd 1px solid;
+  border-radius: 5px;
+}
+
+.userForm button {
+  display: block;
+  width: 15%;
+  padding: 10px;
+  margin-top: 20px;
+  background: #52658c;
+  color: #fff;
+  cursor: pointer;
+}
+
+#button1 {
+  display: block;
+  width: 40%;
+  padding: 10px;
+  margin-top: 20px;
+  background: #52658c;
+  color: #fff;
+  cursor: pointer;
+}
+
+#button1:hover {
+  background: #37a08e
+}
+
+#input1 {
+  display: block;
+  width: 40%;
+  padding: 10px;
+  margin-top: 20px;
+  background: #fbfcfc;
+  color: #110101;
+  cursor: pointer;
+}
+
+#input1:hover {
+  background: #b7d8d2
+}
+
+.userForm button:hover {
+  background: #37a08e
+}
+
+.userForm .bottom-text {
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+}
+
+footer a {
+  color:#49c1a2
+}
+
+#foodOptions,
+#exerciseOptions {
+  display: flex;
+  gap: 10px;
+}
+
+#foodOptionsContainer,
+#exerciseOptionsContainer {
+background: #fff;
+padding: 15px;
+margin-top: 20px;
+border-radius: 5px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#foodOptions,
+#exerciseOptions {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+}
