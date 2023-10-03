@@ -27,4 +27,8 @@ public class FoodService {
     public FoodModel findFoodById(Long id) {
         return foodRepository.findById(id).get();
     }
+
+    public FoodModel getByFoodId(Long id) {
+        return foodRepository.findById(id).get();
+    }
 }

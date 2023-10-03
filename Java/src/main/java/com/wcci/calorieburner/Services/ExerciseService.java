@@ -29,4 +29,8 @@ public class ExerciseService {
         return exerciseRepository.findById(id).get();
 
     }
+
+    public ExerciseModel getExerciseById(Long id) {
+        return exerciseRepository.findById(id).get();
+    }
 }

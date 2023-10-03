@@ -1,92 +1,109 @@
 package com.wcci.calorieburner.Models;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CalculateCaloriesDto {
     private int currentWeight;
-    private int targetWeight;
     private int age;
-    private int currentHeight;
+    private double currentHeight;
     private boolean gender;
     private String name;
-    private Iterable<FoodModel> food;
-    private Iterable<ExerciseModel> exercise;
-    private HashMap<String, Integer> foodList;
-    private HashMap<String, Integer> exerciseList;
+    private List<SelectedFoodDto> userFoodSelected; // stored in DTO
+    private List<SelectedExerciseDto> userSelectedExercise; // stored in DTO
 
-     public CalculateCaloriesDto(int currentWeight, int targetWeight, int age, int currentHeight, boolean gender,
-            String name,Iterable<FoodModel> food, Iterable<ExerciseModel> exercise) {
+    private List<SelectedFood> selectedFoods = new ArrayList<>(); // stored in DB
+    private List<SelectedExercise> selectedExercises = new ArrayList<>(); // stored in DB
+
+    public CalculateCaloriesDto() {
+    }
+
+    public CalculateCaloriesDto(int currentWeight, int age, double currentHeight, boolean gender,
+            String name, Iterable<FoodModel> foods, Iterable<ExerciseModel> exercises) {
         this.currentWeight = currentWeight;
-        this.targetWeight = targetWeight;
         this.age = age;
         this.currentHeight = currentHeight;
         this.gender = gender;
         this.name = name;
-        this.food = food;
-        this.exercise = exercise;
-        this.foodList = new HashMap<String, Integer>();
-        this.exerciseList = new HashMap<String, Integer>();
+
+        for (FoodModel food : foods) {
+            selectedFoods.add(new SelectedFood(food, 0));
+        }
+        for (ExerciseModel exercise : exercises) {
+            selectedExercises.add(new SelectedExercise(exercise, 0));
+        }
     }
 
-  /*    public CalculateCaloriesDto(Iterable<FoodModel> food, Iterable<ExerciseModel> exercise) {
-        this.foodList = new HashMap<String, Integer>();
-        this.exerciseList = new HashMap<String, Integer>();
-    } */
-
-    public Iterable<ExerciseModel> getExercise(){
-        return this.exercise;
-    }
-
-    public Iterable<FoodModel> getFood(){
-        return this.food;
-    }
     public int getCurrentWeight() {
         return currentWeight;
     }
-    public int getTargetWeight() {
-        return targetWeight;
+
+    public void setCurrentWeight(int currentWeight) {
+        this.currentWeight = currentWeight;
     }
+
     public int getAge() {
         return age;
     }
-    public int getCurrentHeight() {
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public double getCurrentHeight() {
         return currentHeight;
     }
+
+    public void setCurrentHeight(double currentHeight) {
+        this.currentHeight = currentHeight;
+    }
+
     public boolean isGender() {
         return gender;
     }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
     public String getName() {
         return name;
     }
 
-    public HashMap<String, Integer> getFoodList() {
-        return foodList;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public HashMap<String, Integer> getExerciseList() {
-        return exerciseList;
+    public List<SelectedFood> getSelectedFoods() {
+        return selectedFoods;
     }
 
-    public void addFood(Long id){
-        for(FoodModel selected : food){
-            if(selected.getId().equals(id)){
-                foodList.put(selected.getId().toString(), selected.getCalories());
-                return;
-            }
-        }
+    public List<SelectedExercise> getSelectedExercises() {
+        return selectedExercises;
     }
 
-    public void addExercise(Long id){
-        for(ExerciseModel selected : exercise){
-            if(selected.getId().equals(id)){
-                foodList.put(selected.getId().toString(), selected.getCaloriesBurned());
-                return;
-            }
-        }
+    public void addToSelectedFoods(FoodModel foodId, int quantity) {
+        selectedFoods.add(new SelectedFood(foodId, quantity));
     }
 
-    
+    public void addToSelectedExercises(ExerciseModel exerciseId, int quantity) {
+        selectedExercises.add(new SelectedExercise(exerciseId, quantity));
+    }
 
-   
+    public List<SelectedFoodDto> getUserFoodSelected() {
+        return userFoodSelected;
+    }
+
+    public void setUserFoodSelected(List<SelectedFoodDto> userFoodSelected) {
+        this.userFoodSelected = userFoodSelected;
+    }
+
+    public List<SelectedExerciseDto> getUserSelectedExercise() {
+        return userSelectedExercise;
+    }
+
+    public void setUserSelectedExercise(List<SelectedExerciseDto> userSelectedExercise) {
+        this.userSelectedExercise = userSelectedExercise;
+    }
+
 }
