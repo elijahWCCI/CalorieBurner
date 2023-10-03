@@ -67,7 +67,7 @@ public class UserController {
         List<SelectedFoodDto> userFoodSelected = calculator.getUserFoodSelected();
         List<SelectedExerciseDto> userSelectedExercise = calculator.getUserSelectedExercise();
 
-        if (userSelectedExercise.size() >= 1 && userFoodSelected.size() > 2) {
+        if (calculatorCaloriesService.secretFormula(calculator)) {
             return "GoodBurnView";
         }
 
