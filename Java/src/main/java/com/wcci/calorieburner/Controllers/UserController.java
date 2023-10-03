@@ -92,7 +92,7 @@ public class UserController {
     // return "GoodBurnView";
     // }
     // return "BadBurnView";
-
     // return "redirect:/error";
+
 
 }
