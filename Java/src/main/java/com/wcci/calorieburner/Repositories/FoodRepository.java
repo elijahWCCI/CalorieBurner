@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.wcci.calorieburner.Models.FoodModel;
 
-public interface FoodRepository extends CrudRepository<FoodModel,Long> {
-    
+public interface FoodRepository extends CrudRepository<FoodModel, Long> {
+
 }

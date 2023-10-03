@@ -29,4 +29,8 @@ public class ExerciseService {
         exerciseRepository.findById(id).get();
         exerciseRepository.deleteById(id);
     }
+
+    public ExerciseModel getExerciseById(Long id) {
+        return exerciseRepository.findById(id).get();
+    }
 }

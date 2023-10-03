@@ -3,20 +3,20 @@ package com.wcci.calorieburner.Models;
 import jakarta.persistence.*;
 
 @Entity
- @Table(name = "Foods")
+@Table(name = "Foods")
 public class FoodModel {
 
-  @Id 
-  @GeneratedValue 
-  private Long id;
-   
-   @Column(unique = true)
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(unique = true)
     private String foodName;
 
     private int calories;
     private String foodCategory;
     private String imageurl;
-   
+
     public FoodModel() {
     }
 

@@ -1,62 +1,188 @@
 <!DOCTYPE html>
-<html lang="en" xlmns:th="http://www.thymeleaf.org">
-  <head>
-    <title>GitFit</title>
-    <link
-      href="../static/css/style.css"
-      th:href="@{/css/style.css}"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="container">
-      <div class="userForm">
-        <h1>Welcome to the Calorie Burner</h1>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-        <!-- User Input Section -->
-        <h2>User Information</h2>
-        <form action="#"  th:action="@{/user/calculator}"  method="post"  th:object="${calculator}" >
+<head>
+  <title>GitFit</title>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script th:inline="javascript">
+    var count = 1;
+    $(document).ready(function () {
+      var maxField = 20; //Input fields increment limitation
+      var addButton = $('.add_button'); //Add button selector
+      var wrapper = $('.field_wrapper'); //Input field wrapper
 
-          <div class="userGroup">
-            <label for="name">Name:</label>
-            <input type="text" th:field="*{name}" required />
+      var x = 1; //Initial field counter is 1
+      // Once add button is clicked
+
+      $(addButton).click(function () {
+        //Check maximum number of input fields
+
+        if (x < maxField) {
+
+          var foodItems = /*[[${calculator.selectedFoods}]]*/ "";
+          var fieldHTML = '<div>'; //New input field html
+          fieldHTML = fieldHTML + "<select name='userFoodSelected[" + x + "].foodId' style='padding: 6px;font-size: 15px;border-radius: 5px' >"
+          for (var i = 0; i < foodItems.length; i++) {
+            fieldHTML = fieldHTML + "<option value='" + foodItems[i].foodId.id + "'>" + foodItems[i].foodId.foodName + "</option>";
+            //console.log(foodItems[i]);
+          }
+          fieldHTML = fieldHTML + "</select>&nbsp;<input type='number' min=0 style='padding: 6px;font-size: 15px;border-radius: 5px' name='userFoodSelected[" + x + "].quantity' placeholder='Quantity' required/><a href='javascript:void(0);' class='remove_button'><span style='margin-left: 10px;cursor: pointer; background-color: #f9f9f9; padding: 5px;font-size: 20px;font-weight: bold;	border: thin solid #d4d4d4;border-radius: 5px'>- </span></a></div>";
+          x++; //Increase field counter
+          $(wrapper).append(fieldHTML); //Add field html
+
+        } else {
+          alert('A maximum of ' + maxField + ' fields are allowed to be added. ');
+        }
+      });
+
+      // Once remove button is clicked
+      $(wrapper).on('click', '.remove_button', function (e) {
+        /* var  val1= $("select[name=\'foodSelection[]\']").map(function() {
+            return $(this).val();
+        }).toArray(val1);
+        console.log(val1);
+        console.log($("input[name='foodQuantity[]']")
+                  .map(function(){return $(this).val();}).get()); */
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrease field counter
+      });
+
+
+
+
+      var maxFieldForExercise = 20; //Input fields increment limitation
+      var addButtonForExercise = $('.add_button_for_exercise'); //Add button selector
+      var wrapperForExercise = $('.field_wrapper_for_exercise'); //Input field wrapper
+
+      var y = 1; //Initial field counter is 1
+      // Once add button is clicked
+
+      $(addButtonForExercise).click(function () {
+        //Check maximum number of input fields
+
+        if (y < maxFieldForExercise) {
+
+          var exerciseItems = /*[[${calculator.selectedExercises}]]*/ "";
+          var fieldHTML = '<div>'; //New input field html
+          fieldHTML = fieldHTML + "<select name='userSelectedExercise[" + y + "].exerciseId' style='padding: 6px;font-size: 15px;border-radius: 5px'>"
+          for (var i = 0; i < exerciseItems.length; i++) {
+            fieldHTML = fieldHTML + "<option value='" + exerciseItems[i].exerciseId.id + "'>" + exerciseItems[i].exerciseId.name + "</option>";
+            //console.log(foodItems[i]);
+          }
+          fieldHTML = fieldHTML + "</select>&nbsp;<a href='javascript:void(0);' class='remove_button_for_exercise'><span style='margin-left: 10px;cursor: pointer; background-color: #f9f9f9; padding: 5px;font-size: 20px;font-weight: bold;	border: thin solid #d4d4d4;border-radius: 5px'>- </span></a></div>";
+          y++; //Increase field counter
+          $(wrapperForExercise).append(fieldHTML); //Add field html
+
+        } else {
+          alert('A maximum of ' + maxFieldForExercise + ' fields are allowed to be added. ');
+        }
+      });
+
+      // Once remove button is clicked
+      $(wrapperForExercise).on('click', '.remove_button_for_exercise', function (e) {
+        /* var  val1= $("select[name=\'foodSelection[]\']").map(function() {
+            return $(this).val();
+        }).toArray(val1);
+        console.log(val1);
+        console.log($("input[name='foodQuantity[]']")
+                  .map(function(){return $(this).val();}).get()); */
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        y--; //Decrease field counter
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="userForm">
+      <h1>Welcome to the Calorie Burner</h1>
+
+      <!-- User Input Section -->
+      <h2>User Information</h2>
+      <form action="#" th:action="@{/user/calculator}" method="post" th:object="${calculator}">
+        <input type="hidden" id="yourId" th:value="${calculator.selectedFoods}" />
+        <div class="userGroup">
+          <label for="name">Name:</label>
+          <input type="text" th:field="*{name}" required />
+        </div>
+        <br>
+        <div>
+          <label for="gender">Gender:</label><br>
+          <input type="radio" checked="checked" name="gender" th:field="*{gender}" value="True" />Male
+          <input type="radio" name="gender" th:field="*{gender}" value="False" />Female
+        </div>
+        <div class="userGroup">
+          <label for="age">Age:</label>
+          <input type="number" min=0 th:field="*{age}" required />
+        </div>
+        <div class="userGroup">
+          <label for="currentWeight">Current Weight (in pounds):</label>
+          <input type="number" min=0 th:field="*{currentWeight}" required />
+        </div>
+        <div class="userGroup">
+          <label for="height">Height (in feet):</label>
+          <input type="number" min=0 step="0.1" th:field="*{currentHeight}" required />
+        </div>
+        <br>
+        <!-- Food Selection Section -->
+        <!-- <div class="userGroup">
+          <label for="foodSelection">Select Food:</label>
+          <select name="foodSelection" id="foodSelection">
+            <option th:each="foodItem : ${calculator.selectedFoods}" th:value="${foodItem.id}"
+              th:text="${foodItem.foodId.foodName}"></option>
+          </select>
+          <input type="number" name="foodQuantity" placeholder="Quantity" />
+          <input type="submit" name="addToFoodList" value="Add to Food List" />
+        </div> -->
+        <label for="fooddSelection">Select Foods:</label>
+        <div class="field_wrapper">
+          <div>
+            <select th:field="*{userFoodSelected[0].foodId}" style="padding: 6px;font-size: 15px;border-radius: 5px">
+              <option th:each="foodItem : ${calculator.selectedFoods}" th:value="${foodItem.foodId.id}"
+                th:text="${foodItem.foodId.foodName}"></option>
+            </select>
+            <input type="number" min=0 class="userGroup" th:field="*{userFoodSelected[0].quantity} "
+              placeholder="Quantity" style="padding: 6px;font-size: 15px;border-radius: 5px" />
+            <a href="javascript:void(0);" class="add_button" title="Add field"><span
+                style="margin-left: 10px;cursor: pointer; background-color: #f9f9f9; padding: 5px;font-size: 20px;font-weight: bold;	border: thin solid #d4d4d4;border-radius: 5px ">+</span></a>
           </div>
-          <div class="userGroup">
-            <label for="gender">Gender:</label>
-            <input type="radio" th:field="*{gender}" value="True" />Male
-            <input type="radio" th:field="*{gender}" value="False" />Female
+        </div>
+        <br>
+        <!-- Exercise Selection Section -->
+        <!-- <div class="userGroup">
+          <label for="exerciseSelection">Select Exercise:</label>
+          <select name="exerciseSelection" id="exerciseSelection">
+            <option th:each="exerciseItem : ${calculator.selectedExercises}" th:value="${exerciseItem.id}"
+              th:text="${exerciseItem.exerciseId.name}"></option>
+          </select>
+          <input type="number" name="exerciseQuantity" placeholder="Quantity" />
+          <input type="submit" name="addToExerciseList" value="Add to Exercise List" />
+        </div> -->
+        <label for="exerciseSelection">Select Exercise:</label>
+        <div class="field_wrapper_for_exercise">
+          <div>
+            <select class="userGroup" th:field="*{userSelectedExercise[0].exerciseId}"
+              style="padding: 6px;font-size: 15px;border-radius: 5px">
+              <option th:each="exerciseItem : ${calculator.selectedExercises}" th:value="${exerciseItem.exerciseId.id}"
+                th:text="${exerciseItem.exerciseId.name}"></option>
+            </select>
+            <a href="javascript:void(0);" class="add_button_for_exercise" title="Add field"><span
+                style="margin-left: 10px;cursor: pointer; background-color: #f9f9f9; padding: 5px;font-size: 20px;font-weight: bold;	border: thin solid #d4d4d4;border-radius: 5px ">+</span></a>
           </div>
-          <div class="userGroup">
-            <label for="age">Age:</label>
-            <input type="number" th:field="*{age}" required/>
-          </div>
-          <div class="userGroup">
-            <label for="currentWeight">Current Weight (in pounds):</label>
-            <input type="number" th:field="*{currentWeight}" required />
-          </div>
-          <div class="userGroup">
-            <label for="targetWeight">Target Weight (in pounds):</label>
-            <input type="number" th:field="*{targetWeight}" required />
-          </div>
-          <div class="userGroup">
-            <label for="height">Height (in feet):</label>
-            <input type="number" th:field="*{currentHeight}"  required />
-            </div>
-            <div class="userGroup">
-<select role="listbox">
-    <option th:each="i : ${calculator.getFood()}" th:value="${i.getId()}" th:text="${i.getFoodName()}">
-    </option>
-</select>
-<select role="listbox">
-    <option th:each="i : ${calculator.getExercise()}" th:value="${i.getId()}" th:text="${i.getName()}">
-    </option>
-</select>
-            </div>
-          <h2>Results</h2>
-          <p id="result"></p>
-          <input id="button1" type="submit" value="Submit" />
-        </form>
-      </div>
+        </div>
+
+
+        <h2>Results</h2>
+        <p id="result"></p>
+        <input id="button1" type="submit" name="submitForm" value="Submit" />
+      </form>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
