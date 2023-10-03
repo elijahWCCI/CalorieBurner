@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wcci.calorieburner.Models.CalculateCaloriesDto;
+import com.wcci.calorieburner.Models.ExerciseModel;
+import com.wcci.calorieburner.Models.FoodModel;
 import com.wcci.calorieburner.Models.SelectedExerciseDto;
 import com.wcci.calorieburner.Models.SelectedFoodDto;
 import com.wcci.calorieburner.Services.CalculatorCaloriesService;
