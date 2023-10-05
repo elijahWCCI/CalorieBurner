@@ -29,14 +29,6 @@ public class UserController {
         this.calculatorCaloriesService = calculatorCaloriesService;
     }
 
-    @RequestMapping("")
-    public String home(Model model) {
-        CalculateCaloriesDto calculate = new CalculateCaloriesDto(
-                0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());
-        model.addAttribute("calculator", calculate);
-        return "CalorieView";
-    }
-
     @PostMapping("/calculator")
     public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator,
             @RequestParam Map<String, Object> params) {
@@ -46,4 +38,13 @@ public class UserController {
         return "BadBurnView";
 
     }
+
+    @RequestMapping("")
+    public String home(Model model) {
+        CalculateCaloriesDto calculate = new CalculateCaloriesDto(
+                0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());
+        model.addAttribute("calculator", calculate);
+        return "CalorieView";
+    }
+
 }

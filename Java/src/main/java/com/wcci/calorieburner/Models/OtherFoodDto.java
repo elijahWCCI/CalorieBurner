@@ -1,7 +1,9 @@
 package com.wcci.calorieburner.Models;
 
 public class OtherFoodDto {
+
     private String name;
+
     private int calories;
 
     public String getName() {

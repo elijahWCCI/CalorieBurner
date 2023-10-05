@@ -1,7 +1,9 @@
 package com.wcci.calorieburner.Models;
 
 public class OtherExerciseDto {
+
     private String name;
+
     private int caloriesBurned;
 
     public String getName() {

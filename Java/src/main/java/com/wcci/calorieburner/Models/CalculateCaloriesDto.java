@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalculateCaloriesDto {
+
     private int currentWeight;
     private int age;
     private double currentHeight;
@@ -16,8 +17,8 @@ public class CalculateCaloriesDto {
     private List<SelectedFoodDto> userFoodSelected; // Stored in DTO
     private List<SelectedExerciseDto> userSelectedExercise; // Stored in DTO
 
-    private List<SelectedFood> selectedFoods = new ArrayList<>(); // Stored in DB
-    private List<SelectedExercise> selectedExercises = new ArrayList<>(); // Stored in DB
+    private List<SelectedFood> selectedFoods = new ArrayList<>(); // Data from backend to frontend for dropdowns
+    private List<SelectedExercise> selectedExercises = new ArrayList<>(); // Data from backend to frontend for dropdowns
 
     public CalculateCaloriesDto() {
     }
