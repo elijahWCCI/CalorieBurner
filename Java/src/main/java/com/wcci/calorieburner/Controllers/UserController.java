@@ -32,6 +32,10 @@ public class UserController {
     @PostMapping("/calculator")
     public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator,
             @RequestParam Map<String, Object> params) {
+
+        List<SelectedFoodDto> userFoodSelected = calculator.getUserFoodSelected();
+        List<SelectedExerciseDto> userSelectedExercise = calculator.getUserSelectedExercise();
+
         if (calculatorCaloriesService.secretFormula(calculator)) {
             return "GoodBurnView";
         }
