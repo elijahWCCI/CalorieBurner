@@ -1,7 +1,9 @@
 package com.wcci.calorieburner.Models;
 
 public class SelectedFoodDto {
+
     private long foodId;
+
     private int quantity;
     private long userId;
 

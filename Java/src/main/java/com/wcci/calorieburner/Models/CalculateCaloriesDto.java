@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalculateCaloriesDto {
+
     private int currentWeight;
     private int age;
     private double currentHeight;
     private boolean gender;
     private String name;
-    private List<SelectedFoodDto> userFoodSelected; // stored in DTO
-    private List<SelectedExerciseDto> userSelectedExercise; // stored in DTO
 
-    private List<SelectedFood> selectedFoods = new ArrayList<>(); // stored in DB
-    private List<SelectedExercise> selectedExercises = new ArrayList<>(); // stored in DB
+    private List<OtherFoodDto> otherFoodEntered;
+    private List<OtherExerciseDto> otherExerciseEntered;
+
+    private List<SelectedFoodDto> userFoodSelected; // Stored in DTO
+    private List<SelectedExerciseDto> userSelectedExercise; // Stored in DTO
+
+    private List<SelectedFood> selectedFoods = new ArrayList<>(); // Data from backend to frontend for dropdowns
+    private List<SelectedExercise> selectedExercises = new ArrayList<>(); // Data from backend to frontend for dropdowns
 
     public CalculateCaloriesDto() {
     }
@@ -104,6 +109,22 @@ public class CalculateCaloriesDto {
 
     public void setUserSelectedExercise(List<SelectedExerciseDto> userSelectedExercise) {
         this.userSelectedExercise = userSelectedExercise;
+    }
+
+    public List<OtherFoodDto> getOtherFoodEntered() {
+        return otherFoodEntered;
+    }
+
+    public void setOtherFoodEntered(List<OtherFoodDto> otherFoodEntered) {
+        this.otherFoodEntered = otherFoodEntered;
+    }
+
+    public List<OtherExerciseDto> getOtherExerciseEntered() {
+        return otherExerciseEntered;
+    }
+
+    public void setOtherExerciseEntered(List<OtherExerciseDto> otherExerciseEntered) {
+        this.otherExerciseEntered = otherExerciseEntered;
     }
 
 }

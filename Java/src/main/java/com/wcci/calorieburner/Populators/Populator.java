@@ -68,7 +68,7 @@ public class Populator implements CommandLineRunner {
         eRepository.save(exercise17);
         ExerciseModel exercise18 = new ExerciseModel("Surfing", 236);
         eRepository.save(exercise18);
-        ExerciseModel exercise19 = new ExerciseModel("Paddleboarding", 344);
+        ExerciseModel exercise19 = new ExerciseModel("Paddleboard", 344);
         eRepository.save(exercise19);
         ExerciseModel exercise20 = new ExerciseModel("CrossFit", 704);
         eRepository.save(exercise20);

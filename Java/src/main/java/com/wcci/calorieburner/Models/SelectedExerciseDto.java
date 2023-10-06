@@ -1,6 +1,7 @@
 package com.wcci.calorieburner.Models;
 
 public class SelectedExerciseDto {
+
     private long exerciseId;
     private long userId;
 

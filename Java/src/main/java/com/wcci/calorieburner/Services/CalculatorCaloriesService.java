@@ -1,7 +1,6 @@
 package com.wcci.calorieburner.Services;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -12,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.wcci.calorieburner.Models.CalculateCaloriesDto;
 import com.wcci.calorieburner.Models.ExerciseModel;
 import com.wcci.calorieburner.Models.FoodModel;
+import com.wcci.calorieburner.Models.OtherExerciseDto;
+import com.wcci.calorieburner.Models.OtherFoodDto;
 import com.wcci.calorieburner.Models.SelectedExercise;
 import com.wcci.calorieburner.Models.SelectedExerciseDto;
 import com.wcci.calorieburner.Models.SelectedFood;
@@ -35,16 +36,23 @@ public class CalculatorCaloriesService {
 
     // Calculate TDEE and compare it with total calories from food
     public boolean secretFormula(CalculateCaloriesDto dto) {
+        // Save user details
 
-        Iterable<ExerciseModel> formExerciseModel = formExerciseModel(dto.getUserSelectedExercise());
-
+        // Creating user object
         User userData = new User(dto.getName(), dto.isGender(), dto.getAge(), dto.getCurrentWeight(),
                 dto.getCurrentHeight());
 
+        // Adds foods/exercises selected from dropdown lists into database
         User user = saveSelectedFoodsAndExerciseToUser(dto.getUserFoodSelected(), dto.getUserSelectedExercise(),
                 userData);
-        // save user details
 
+        // Adds foods/exercises manually entered into database
+        user = saveNewlyAddedFoodsAndExercise(dto.getOtherFoodEntered(), dto.getOtherExerciseEntered(), user);
+
+        // User object, selected foods, and selected exercises are now saved in DB.
+
+        // Calculate calories burned vs calories consumed
+        List<ExerciseModel> formExerciseModel = formExerciseModel(user.getSelectedExercises());
         // Calculate TDEE using BMR and activity level
         double tdee = calculateTDEE(dto.getCurrentWeight(), dto.getCurrentHeight(), dto.getAge(), dto.isGender(),
                 formExerciseModel);
@@ -59,7 +67,7 @@ public class CalculatorCaloriesService {
 
     // Calculate TDEE using BMR and activity level
     private static double calculateTDEE(double weightKg, double heightCm, int age, boolean gender,
-            Iterable<ExerciseModel> exercises) {
+            List<ExerciseModel> exercises) {
         // Calculate BMR based on weight, height, age, and gender
         double bmr = calculateBMR(weightKg, heightCm, age, gender);
         System.out.println("========BMR=======>" + bmr);
@@ -94,7 +102,7 @@ public class CalculatorCaloriesService {
     }
 
     // Calculate activity level based on average calories burned from exercises
-    private static double calculateActivityLevel(Iterable<ExerciseModel> exercises) {
+    private static double calculateActivityLevel(List<ExerciseModel> exercises) {
         int totalCaloriesBurnedFromExercise = 0;
         int count = 0;
 
@@ -130,9 +138,44 @@ public class CalculatorCaloriesService {
 
     // Using stream API to transform list of objects into list of Long exercise IDs
     // Using map to extract exerciseId's from SelectedExerciseDTO
-    private Iterable<ExerciseModel> formExerciseModel(List<SelectedExerciseDto> dtoList) {
-        List<Long> exerciseIds = dtoList.stream().map(SelectedExerciseDto::getExerciseId).collect(Collectors.toList());
-        return exerciseRepo.findAllById(exerciseIds);
+    private List<ExerciseModel> formExerciseModel(List<SelectedExercise> selectedExercises) {
+        List<ExerciseModel> exerciseIds = selectedExercises.stream().map(SelectedExercise::getExerciseId)
+                .collect(Collectors.toList());
+        return exerciseIds;
+    }
+
+    private User saveNewlyAddedFoodsAndExercise(List<OtherFoodDto> dtoList, List<OtherExerciseDto> exerciseList,
+            User user) {
+        for (OtherFoodDto otherFood : dtoList) {
+            FoodModel model = new FoodModel();
+            model.setCalories(otherFood.getCalories());
+            model.setFoodName(otherFood.getName());
+            FoodModel foodModel = foodRepo.save(model);
+            SelectedFood each = new SelectedFood();
+            each.setFoodId(foodModel);
+            each.setUser(user);
+            each.setQuantity(1);
+            List<SelectedFood> selectedFoods = user.getSelectedFoods();
+            selectedFoods.add(each);
+            user.setSelectedFoods(selectedFoods);
+        }
+
+        System.out.println("Total foods selected:" + user.getSelectedFoods().size());
+
+        for (OtherExerciseDto exerciseModel : exerciseList) {
+            ExerciseModel model = new ExerciseModel();
+            model.setCaloriesBurned(exerciseModel.getCaloriesBurned());
+            model.setName(exerciseModel.getName());
+            ExerciseModel exerciseModelFromDb = exerciseRepo.save(model);
+            SelectedExercise each = new SelectedExercise();
+            each.setExerciseId(exerciseModelFromDb);
+            each.setUser(user);
+            List<SelectedExercise> selectedExercises = user.getSelectedExercises();
+            selectedExercises.add(each);
+            user.setSelectedExercises(selectedExercises);
+        }
+        System.out.println("Total exercises selected:" + user.getSelectedExercises().size());
+        return userRepo.save(user);
     }
 
     private User saveSelectedFoodsAndExerciseToUser(List<SelectedFoodDto> dtoList,
