@@ -1,5 +1,6 @@
 package com.wcci.calorieburner.Controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.wcci.calorieburner.Models.CalculateCaloriesDto;
+import com.wcci.calorieburner.Models.*;
 import com.wcci.calorieburner.Services.CalculatorCaloriesService;
 import com.wcci.calorieburner.Services.ExerciseService;
 import com.wcci.calorieburner.Services.FoodService;
