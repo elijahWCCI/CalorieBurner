@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["calorieburner", "Exercice", "wcci"],
+  "cSpell.words": [
+    "calorieburner",
+    "Exercice",
+    "imageurl",
+    "Populator",
+    "Populators",
+    "wcci"
+  ],
   "java.configuration.updateBuildConfiguration": "interactive",
   "java.compile.nullAnalysis.mode": "automatic",
   "liveServer.settings.port": 5501,
