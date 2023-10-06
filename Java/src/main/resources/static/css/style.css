@@ -1,11 +1,11 @@
 * {
   box-sizing: border-box;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   background: #344a72;
   color: #fff;
   line-height: 1.8;
@@ -32,7 +32,7 @@ a {
   text-align: center;
 }
 
-.userForm .userGroup{
+.userForm .userGroup {
   margin-top: 4px;
 }
 
@@ -69,7 +69,7 @@ a {
 }
 
 #button1:hover {
-  background: #37a08e
+  background: #37a08e;
 }
 
 #input1 {
@@ -83,11 +83,11 @@ a {
 }
 
 #input1:hover {
-  background: #b7d8d2
+  background: #b7d8d2;
 }
 
 .userForm button:hover {
-  background: #37a08e
+  background: #37a08e;
 }
 
 .userForm .bottom-text {
@@ -101,7 +101,7 @@ footer {
 }
 
 footer a {
-  color:#49c1a2
+  color: #49c1a2;
 }
 
 #foodOptions,
@@ -112,16 +112,16 @@ footer a {
 
 #foodOptionsContainer,
 #exerciseOptionsContainer {
-background: #fff;
-padding: 15px;
-margin-top: 20px;
-border-radius: 5px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #foodOptions,
 #exerciseOptions {
-display: flex;
-flex-wrap: wrap;
-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
