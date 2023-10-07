@@ -47,7 +47,17 @@ public class CalculatorCaloriesService {
                 userData);
 
         // Adds foods/exercises manually entered into database
-        user = saveNewlyAddedFoodsAndExercise(dto.getOtherFoodEntered(), dto.getOtherExerciseEntered(), user);
+        //Added conditionals
+        if (dto.getOtherFoodEntered() != null && dto.getOtherExerciseEntered() != null) {
+            user = saveNewlyAddedFoods(dto.getOtherFoodEntered(), user);
+            user = saveNewlyAddedExercise(dto.getOtherExerciseEntered(), user);
+        } else if (dto.getOtherExerciseEntered() != null && dto.getOtherFoodEntered() == null) {
+            user = saveNewlyAddedExercise(dto.getOtherExerciseEntered(), user);
+        } else if (dto.getOtherExerciseEntered() == null && dto.getOtherFoodEntered() != null) {
+            user = saveNewlyAddedFoods(dto.getOtherFoodEntered(), user);
+        }
+
+        
 
         // User object, selected foods, and selected exercises are now saved in DB.
 
@@ -144,8 +154,7 @@ public class CalculatorCaloriesService {
         return exerciseIds;
     }
 
-    private User saveNewlyAddedFoodsAndExercise(List<OtherFoodDto> dtoList, List<OtherExerciseDto> exerciseList,
-            User user) {
+    private User saveNewlyAddedFoods(List<OtherFoodDto> dtoList, User user) {
         for (OtherFoodDto otherFood : dtoList) {
             FoodModel model = new FoodModel();
             model.setCalories(otherFood.getCalories());
@@ -161,6 +170,12 @@ public class CalculatorCaloriesService {
         }
 
         System.out.println("Total foods selected:" + user.getSelectedFoods().size());
+        return userRepo.save(user);
+
+    }
+
+            private User saveNewlyAddedExercise(List<OtherExerciseDto> exerciseList,
+            User user) {
 
         for (OtherExerciseDto exerciseModel : exerciseList) {
             ExerciseModel model = new ExerciseModel();
