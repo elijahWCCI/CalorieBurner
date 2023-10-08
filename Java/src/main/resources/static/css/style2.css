@@ -5,15 +5,15 @@
 }
 
 body {
-  font-family: "Raleway", sans-serif;
-  background: #344a72;
-  color: #000000;
+  font-family: 'Pixelify Sans','Bold';
+  background: #023E8A;
+  color: #0096C7;
   line-height: 1.8;
 }
 
 a {
   text-decoration: none;
-  color: #37a08e;
+  
 }
 
 .container {
@@ -39,17 +39,18 @@ p {
 }
 
 .try-again {
-  background-color: #37a08e;
+  background-color: #023E8A;
   color: #fff;
   font-size: 24px;
   padding: 10px 20px;
   border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;
+  font-family:'Pixelify Sans';
 }
 
 .try-again:hover {
-  background-color: #2c7b6d;
+  background-color: #0096C7;
 }
 
 a:hover {

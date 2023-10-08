@@ -5,10 +5,11 @@
 }
 
 body {
-  font-family: "Raleway", sans-serif;
-  background: #344a72;
-  color: #fff;
+  font-family: 'Pixelify Sans','Bold';
+  background: #023E8A;
+  color: #0096C7;
   line-height: 1.8;
+  padding: 20px
 }
 
 a {
@@ -19,12 +20,14 @@ a {
   margin: 30px auto;
   max-width: 600px;
   padding: 20px;
+  background-color: rgb(228, 229, 239);
 }
 
 .userForm {
+  font-family: 'Pixelify Sans';
   background: #fff;
   padding: 15px 25px;
-  color: #333;
+  color: #010101;
 }
 
 .userForm h1,
@@ -34,6 +37,7 @@ a {
 
 .userForm .userGroup {
   margin-top: 4px;
+  font-family: 'Pixelify Sans';
 }
 
 .userForm .userGroup label {
@@ -44,18 +48,19 @@ a {
 .userForm .userGroup input {
   width: 100%;
   padding: 10px;
-  border: #ddd 1px solid;
+  border: #CAF0F8 1px solid;
   border-radius: 5px;
 }
 
 .userForm button {
   display: block;
-  width: 15%;
+  width: 20%;
   padding: 10px;
   margin-top: 20px;
-  background: #52658c;
+  background: #023E8A;
   color: #fff;
   cursor: pointer;
+  font-family: 'Pixelify Sans';
 }
 
 #button1 {
@@ -63,13 +68,14 @@ a {
   width: 40%;
   padding: 10px;
   margin-top: 20px;
-  background: #52658c;
+  background: #023E8A;
   color: #fff;
   cursor: pointer;
+  font-family: 'Pixelify Sans';
 }
 
 #button1:hover {
-  background: #37a08e;
+  background: #0096C7;
 }
 
 #input1 {
@@ -87,7 +93,7 @@ a {
 }
 
 .userForm button:hover {
-  background: #37a08e;
+  background: #0096C7;
 }
 
 .userForm .bottom-text {
