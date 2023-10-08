@@ -62,7 +62,7 @@ public class UserController {
 
 
 
-    @GetMapping("/info")
+    @GetMapping("/login")
     public String login(Model model){
         return "login.html";
 
