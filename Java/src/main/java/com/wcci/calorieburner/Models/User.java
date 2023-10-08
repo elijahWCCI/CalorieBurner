@@ -16,6 +16,8 @@ public class User {
     private int age;
     private int currentWeight;
     private double currentHeight;
+    private String userName;
+    private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<SelectedFood> selectedFoods = new ArrayList<>();
@@ -98,6 +100,16 @@ public class User {
         this.age = age;
         this.currentWeight = currentWeight;
         this.currentHeight = currentHeight;
+    }
+
+    public void createUser(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+        this.name = "";
+        this.gender = true;
+        this.age = 0;
+        this.currentWeight = 0;
+        this.currentHeight = 0;
     }
 
 }

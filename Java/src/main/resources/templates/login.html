@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="container">
+        <div class="userForm">
+            <h1>Welcome to the Calorie Burner</h1>
+            <h2>Log in to your account</h2>
+            <form action="/user/login" method="post" >
+            <div class="userGroup">
+                    <label for="name">Username:</label>
+                    <input type="text" name="userName" required />
+                </div>
+                <div class="userGroup">
+                    <label for="name">Password:</label>
+                    <input type="text" name="password" required />
+                </div>
+                <div class="flexItems">
+                    <input id="button1" type="submit" name="submitForm" value="Submit"  />
+                    <img th:src="@{/img/login.jpg}" alt="Create User"  class="loginButton">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
