@@ -5,15 +5,15 @@
 }
 
 body {
-  font-family: "Raleway", sans-serif;
-  background: #344a72;
+  font-family: "Pixelify Sans", "Bold";
+  background: #1B2D45;
   color: #000000;
   line-height: 1.8;
 }
 
 a {
   text-decoration: none;
-  color: #37a08e;
+  color: #1B2D45;
 }
 
 .container {
@@ -28,7 +28,7 @@ a {
 }
 
 h1 {
-  color: #37a08e;
+  color: #1B2D45;
   font-size: 36px;
   margin-bottom: 20px;
 }
