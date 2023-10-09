@@ -25,7 +25,7 @@ public class UserController {
     private FoodService foodService;
     private ExerciseService exerciseService;
     private CalculatorCaloriesService calculatorCaloriesService;
-    private CalculateCaloriesDto calculate;
+    private CalculateCaloriesDto userInfo;
     @Autowired
     private UserRepository userRepository;
 
@@ -54,15 +54,15 @@ public class UserController {
 
     @RequestMapping("")
     public String home(Model model) {
-        calculate = new CalculateCaloriesDto(
+       CalculateCaloriesDto userInfo = new CalculateCaloriesDto(
                 0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());
-        model.addAttribute("calculator", calculate);
+        model.addAttribute("calculator", userInfo);
         return "CalorieView";
     } 
 
 
 
-    @GetMapping("/login")
+  /*   @GetMapping("/login")
     public String login(Model model){
         return "login.html";
 
@@ -72,16 +72,18 @@ public class UserController {
     public String addUser(Model model,
     @RequestParam String userName,
     @RequestParam String password ){
-                calculate = new CalculateCaloriesDto(
+                userInfo = new CalculateCaloriesDto(
                 0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());
 
         model.addAttribute("username", userName);
         model.addAttribute("password", password);
-        User newUser = new User();
+
+        userInfo.createUser(userName, password); */
+       /*  User newUser = new User();
         newUser.createUser(userName, password);
-        userRepository.save(newUser);
-        model.addAttribute("calculator", calculate);
+        userRepository.save(newUser); */
+       /*  model.addAttribute("calculator", userInfo);
         return "CalorieView.html";
-    }
+    } */
 
 }

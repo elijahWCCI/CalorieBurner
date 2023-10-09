@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 
 import com.wcci.calorieburner.Models.ExerciseModel;
 import com.wcci.calorieburner.Models.FoodModel;
+import com.wcci.calorieburner.Models.User;
 import com.wcci.calorieburner.Repositories.ExerciseRepository;
 import com.wcci.calorieburner.Repositories.FoodRepository;
+import com.wcci.calorieburner.Repositories.UserRepository;
 
 import jakarta.annotation.Resource;
 
@@ -20,13 +22,17 @@ public class Populator implements CommandLineRunner {
     @Resource
     private ExerciseRepository eRepository;
 
+    @Resource
+    private UserRepository userRepository;
+
     private Date d1 = new Date();
 
     public Populator(FoodRepository foodRepository,
-            ExerciseRepository exerciseRepository) {
+            ExerciseRepository exerciseRepository, UserRepository userRepository) {
 
         this.fRepository = foodRepository;
         this.eRepository = exerciseRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -152,8 +158,21 @@ public class Populator implements CommandLineRunner {
         FoodModel food30 = new FoodModel("Lean Beef (Sirloin) 3.5oz", 143, null, "foodCategory5");
         fRepository.save(food30);
 
-        // UserModel user1 = new UserModel("Homer", 39, "Male", 177, 240, 220, d1);
-        // uRepository.save(user1);
+         User user1 = new User("Juan Alvarado",true,37, 189, 6.0);
+         user1.setUserName("juan");
+         user1.setPassword("1234");
+         userRepository.save(user1);
+
+         User user2 = new User("Kyle",true,30, 167, 5.9);
+         user2.setUserName("kyle");
+         user2.setPassword("1234");
+         userRepository.save(user2);
+
+         User user3 = new User("hien",true,25, 157, 5.10);
+         user3.setUserName("hien");
+         user3.setPassword("1234");
+         userRepository.save(user3);
+
         // UserModel user2 = new UserModel("Marge", 36, "Female", 170, 150, 145, d1);
         // uRepository.save(user2);
         // UserModel user3 = new UserModel("Peter", 42, "Male", 183, 270, 250, d1);
