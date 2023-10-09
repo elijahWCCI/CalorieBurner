@@ -17,6 +17,7 @@ import com.wcci.calorieburner.Repositories.UserRepository;
 import com.wcci.calorieburner.Services.CalculatorCaloriesService;
 import com.wcci.calorieburner.Services.ExerciseService;
 import com.wcci.calorieburner.Services.FoodService;
+import com.wcci.calorieburner.Services.UserService;
 
 @Controller
 @RequestMapping("/user")
@@ -29,14 +30,15 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
     public UserController(FoodService foodService, ExerciseService exerciseService,
             CalculatorCaloriesService calculatorCaloriesService) {
         this.foodService = foodService;
         this.exerciseService = exerciseService;
         this.calculatorCaloriesService = calculatorCaloriesService;
     }
-
-    
 
     @PostMapping("/calculator")
     public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator,
@@ -54,36 +56,42 @@ public class UserController {
 
     @RequestMapping("")
     public String home(Model model) {
-       CalculateCaloriesDto userInfo = new CalculateCaloriesDto(
-                0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());
+        CalculateCaloriesDto userInfo = new CalculateCaloriesDto(
+                this.userInfo.getCurrentWeight(), this.userInfo.getAge(), this.userInfo.getCurrentHeight(), this.userInfo.isGender(), this.userInfo.getName(), foodService.findAll(), exerciseService.findAll());
         model.addAttribute("calculator", userInfo);
         return "CalorieView";
-    } 
+    }
 
-
-
-  /*   @GetMapping("/login")
-    public String login(Model model){
+    @GetMapping("/info")
+    public String login(Model model) {
         return "login.html";
-
     }
 
     @PostMapping("/login")
     public String addUser(Model model,
-    @RequestParam String userName,
-    @RequestParam String password ){
-                userInfo = new CalculateCaloriesDto(
+            @RequestParam String userName,
+            @RequestParam String password) {
+        userInfo = new CalculateCaloriesDto(
                 0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());
 
         model.addAttribute("username", userName);
         model.addAttribute("password", password);
+        userInfo = userService.findUserByCredentials(userInfo, userName,password);
+        System.out.println(userInfo);
+        if (userInfo != null) {
+            model.addAttribute("calculator", userInfo);
+            return "CalorieView.html";
+        } else {
+            return "WrongCredentials";
+        }
 
-        userInfo.createUser(userName, password); */
-       /*  User newUser = new User();
-        newUser.createUser(userName, password);
-        userRepository.save(newUser); */
-       /*  model.addAttribute("calculator", userInfo);
-        return "CalorieView.html";
-    } */
+       // userInfo.createUser(userName, password);
+        /*
+         * User newUser = new User();
+         * newUser.createUser(userName, password);
+         * userRepository.save(newUser);
+         */
+
+    }
 
 }
