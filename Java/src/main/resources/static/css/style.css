@@ -5,11 +5,11 @@
 }
 
 body {
-  font-family: 'Pixelify Sans','Bold';
-  background: #023E8A;
-  color: #0096C7;
+  font-family: "Pixelify Sans", "Bold";
+  background: #1B2D45;
+  color: #8C9BAA;
   line-height: 1.8;
-  padding: 20px
+  padding: 20px;
 }
 
 a {
@@ -24,7 +24,7 @@ a {
 }
 
 .userForm {
-  font-family: 'Pixelify Sans';
+  font-family: "Pixelify Sans";
   background: #fff;
   padding: 15px 25px;
   color: #010101;
@@ -37,7 +37,7 @@ a {
 
 .userForm .userGroup {
   margin-top: 4px;
-  font-family: 'Pixelify Sans';
+  font-family: "Pixelify Sans";
 }
 
 .userForm .userGroup label {
@@ -48,7 +48,7 @@ a {
 .userForm .userGroup input {
   width: 100%;
   padding: 10px;
-  border: #CAF0F8 1px solid;
+  border: #caf0f8 1px solid;
   border-radius: 5px;
 }
 
@@ -57,10 +57,10 @@ a {
   width: 20%;
   padding: 10px;
   margin-top: 20px;
-  background: #023E8A;
+  background: #1B2D45;
   color: #fff;
   cursor: pointer;
-  font-family: 'Pixelify Sans';
+  font-family: "Pixelify Sans";
 }
 
 #button1 {
@@ -68,14 +68,14 @@ a {
   width: 40%;
   padding: 10px;
   margin-top: 20px;
-  background: #023E8A;
+  background: #1B2D45;
   color: #fff;
   cursor: pointer;
-  font-family: 'Pixelify Sans';
+  font-family: "Pixelify Sans";
 }
 
 #button1:hover {
-  background: #0096C7;
+  background: #8C9BAA;
 }
 
 #input1 {
@@ -83,7 +83,7 @@ a {
   width: 40%;
   padding: 10px;
   margin-top: 20px;
-  background: #fbfcfc;
+  background: #110101;
   color: #110101;
   cursor: pointer;
 }
@@ -93,7 +93,7 @@ a {
 }
 
 .userForm button:hover {
-  background: #0096C7;
+  background: #8C9BAA;
 }
 
 .userForm .bottom-text {
@@ -107,7 +107,7 @@ footer {
 }
 
 footer a {
-  color: #49c1a2;
+  color: #E4ECF1;
 }
 
 #foodOptions,

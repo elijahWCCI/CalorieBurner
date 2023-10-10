@@ -5,54 +5,129 @@
 }
 
 body {
-  font-family: 'Pixelify Sans','Bold';
-  background: #023E8A;
-  color: #0096C7;
+  font-family: "Pixelify Sans", "Bold";
+  background: #1B2D45;
+  color: #8C9BAA;
   line-height: 1.8;
+  padding: 20px;
 }
 
 a {
   text-decoration: none;
-  
 }
 
-.container {
+#container {
   margin: 30px auto;
   max-width: 600px;
   padding: 20px;
+  background-color: rgb(118, 119, 130);
+}
+
+.userForm {
+  font-family: "Pixelify Sans";
   background: #fff;
-  color: #333;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 15px 25px;
+  color: #010101;
+}
+
+.userForm h1,
+.userForm p {
   text-align: center;
 }
 
-h1 {
-  color: #37a08e;
-  font-size: 36px;
-  margin-bottom: 20px;
+.userForm .userGroup {
+  margin-top: 4px;
+  font-family: "Pixelify Sans";
 }
 
-p {
-  font-size: 18px;
-  color: #555;
+.userForm .userGroup label {
+  display: block;
+  color: #666;
 }
 
-.try-again {
-  background-color: #023E8A;
-  color: #fff;
-  font-size: 24px;
-  padding: 10px 20px;
+.userForm .userGroup input {
+  width: 100%;
+  padding: 10px;
+  border: #caf0f8 1px solid;
   border-radius: 5px;
+}
+
+.userForm button {
+  display: block;
+  width: 20%;
+  padding: 10px;
   margin-top: 20px;
+  background: #1B2D45;
+  color: #fff;
   cursor: pointer;
-  font-family:'Pixelify Sans';
+  font-family: "Pixelify Sans";
 }
 
-.try-again:hover {
-  background-color: #0096C7;
+#button1 {
+  display: block;
+  width: 40%;
+  padding: 10px;
+  margin-top: 20px;
+  background: #1B2D45;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Pixelify Sans";
 }
 
-a:hover {
-  text-decoration: underline;
+#button1:hover {
+  background: #8C9BAA;
+}
+
+#input1 {
+  display: block;
+  width: 40%;
+  padding: 10px;
+  margin-top: 20px;
+  background: #110101;
+  color: #110101;
+  cursor: pointer;
+}
+
+#input1:hover {
+  background: #b7d8d2;
+}
+
+.userForm button:hover {
+  background: #8C9BAA;
+}
+
+.userForm .bottom-text {
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+}
+
+footer a {
+  color: #E4ECF1;
+}
+
+#foodOptions,
+#exerciseOptions {
+  display: flex;
+  gap: 10px;
+}
+
+#foodOptionsContainer,
+#exerciseOptionsContainer {
+  background: #fff;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#foodOptions,
+#exerciseOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
