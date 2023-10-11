@@ -41,11 +41,9 @@ public class UserController {
         this.calculatorCaloriesService = calculatorCaloriesService;
     }
 
-<<<<<<< HEAD
+
     @PostMapping("/home/calculator")
-=======
-    @PostMapping("/calculator")
->>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
+
     public String calculator(@ModelAttribute("calculator") CalculateCaloriesDto calculator,
             @RequestParam Map<String, Object> params) {
 
@@ -61,16 +59,13 @@ public class UserController {
 
     @RequestMapping("/home")
     public String home(Model model) {
-<<<<<<< HEAD
+
        /*  CalculateCaloriesDto userInfo = new CalculateCaloriesDto(
                 this.userInfo.getCurrentWeight(), this.userInfo.getAge(), this.userInfo.getCurrentHeight(),
                 this.userInfo.isGender(), this.userInfo.getName(), foodService.findAll(), exerciseService.findAll()); */
         userInfo.updateExerciceList(exerciseService.findAll());
         userInfo.updateFoodList(foodService.findAll());
-=======
-        CalculateCaloriesDto userInfo = new CalculateCaloriesDto(
-                this.userInfo.getCurrentWeight(), this.userInfo.getAge(), this.userInfo.getCurrentHeight(), this.userInfo.isGender(), this.userInfo.getName(), foodService.findAll(), exerciseService.findAll());
->>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
+
         model.addAttribute("calculator", userInfo);
         return "CalorieView";
     }
@@ -84,20 +79,12 @@ public class UserController {
     public String addUser(Model model,
             @RequestParam String userName,
             @RequestParam String password) {
-<<<<<<< HEAD
                 
         userInfo = new CalculateCaloriesDto(0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());        
         model.addAttribute("username", userName);
         model.addAttribute("password", password);
         userInfo = userService.findUserByCredentials(userInfo, userName, password);
-=======
-        userInfo = new CalculateCaloriesDto(
-                0, 0, 0, true, null, foodService.findAll(), exerciseService.findAll());
 
-        model.addAttribute("username", userName);
-        model.addAttribute("password", password);
-        userInfo = userService.findUserByCredentials(userInfo, userName,password);
->>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
         System.out.println(userInfo);
         if (userInfo != null) {
             model.addAttribute("calculator", userInfo);
@@ -106,11 +93,7 @@ public class UserController {
             return "WrongCredentials";
         }
 
-<<<<<<< HEAD
         // userInfo.createUser(userName, password);
-=======
-       // userInfo.createUser(userName, password);
->>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
         /*
          * User newUser = new User();
          * newUser.createUser(userName, password);

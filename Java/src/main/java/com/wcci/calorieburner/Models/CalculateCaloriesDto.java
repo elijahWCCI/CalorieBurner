@@ -17,11 +17,6 @@ public class CalculateCaloriesDto {
     private String name;
     private String userName;
     private String password;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
 
     private List<OtherFoodDto> otherFoodEntered;
     private List<OtherExerciseDto> otherExerciseEntered;
@@ -33,9 +28,9 @@ public class CalculateCaloriesDto {
     private List<SelectedExercise> selectedExercises = new ArrayList<>(); // Data from backend to frontend for dropdowns
 
     @Autowired
-     private FoodService foodService;
+    private FoodService foodService;
 
-     @Autowired
+    @Autowired
     private ExerciseService exerciseService;
 
     public CalculateCaloriesDto() {
@@ -105,11 +100,11 @@ public class CalculateCaloriesDto {
         return password;
     }
 
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.userName = username;
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -166,20 +161,16 @@ public class CalculateCaloriesDto {
         this.password = password;
     }
 
-<<<<<<< HEAD
-    public void updateFoodList( Iterable<FoodModel> foods){
+    public void updateFoodList(Iterable<FoodModel> foods) {
         for (FoodModel food : foods) {
             selectedFoods.add(new SelectedFood(food, 0));
         }
     }
 
-    public void updateExerciceList( Iterable<ExerciseModel> exercises){
+    public void updateExerciceList(Iterable<ExerciseModel> exercises) {
         for (ExerciseModel exercise : exercises) {
             selectedExercises.add(new SelectedExercise(exercise, 0));
         }
     }
 
-=======
-   
->>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
 }
