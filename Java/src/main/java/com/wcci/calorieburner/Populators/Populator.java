@@ -158,6 +158,7 @@ public class Populator implements CommandLineRunner {
         FoodModel food30 = new FoodModel("Lean Beef (Sirloin) 3.5oz", 143, null, "foodCategory5");
         fRepository.save(food30);
 
+<<<<<<< HEAD
         User user1 = new User("Juan", true, 39, 177, 5.4);
         user1.setUserName("juan");
         user1.setPassword("1234");
@@ -172,6 +173,22 @@ public class Populator implements CommandLineRunner {
         user3.setUserName("hien");
         user3.setPassword("1234");
         userRepository.save(user3);
+=======
+         User user1 = new User("Juan Alvarado",true,37, 189, 6.0);
+         user1.setUserName("juan");
+         user1.setPassword("1234");
+         userRepository.save(user1);
+
+         User user2 = new User("Kyle",true,30, 167, 5.9);
+         user2.setUserName("kyle");
+         user2.setPassword("1234");
+         userRepository.save(user2);
+
+         User user3 = new User("hien",true,25, 157, 5.10);
+         user3.setUserName("hien");
+         user3.setPassword("1234");
+         userRepository.save(user3);
+>>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
 
         // UserModel user2 = new UserModel("Marge", 36, "Female", 170, 150, 145, d1);
         // uRepository.save(user2);

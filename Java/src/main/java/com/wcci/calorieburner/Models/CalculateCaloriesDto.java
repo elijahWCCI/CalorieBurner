@@ -17,8 +17,11 @@ public class CalculateCaloriesDto {
     private String name;
     private String userName;
     private String password;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
 
     private List<OtherFoodDto> otherFoodEntered;
     private List<OtherExerciseDto> otherExerciseEntered;
@@ -163,6 +166,7 @@ public class CalculateCaloriesDto {
         this.password = password;
     }
 
+<<<<<<< HEAD
     public void updateFoodList( Iterable<FoodModel> foods){
         for (FoodModel food : foods) {
             selectedFoods.add(new SelectedFood(food, 0));
@@ -175,4 +179,7 @@ public class CalculateCaloriesDto {
         }
     }
 
+=======
+   
+>>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
 }

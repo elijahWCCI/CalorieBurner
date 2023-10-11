@@ -28,6 +28,12 @@ public class UserService {
                 userInfo.setPassword(password);
                 return userInfo;
             }
+<<<<<<< HEAD
+=======
+            else{
+                break;
+            }
+>>>>>>> 270a8aff13fc6c3664d789b23deba2564f7cee23
         }
         return null;
     }
