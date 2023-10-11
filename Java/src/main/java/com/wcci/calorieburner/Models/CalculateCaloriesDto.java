@@ -3,6 +3,11 @@ package com.wcci.calorieburner.Models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.wcci.calorieburner.Services.ExerciseService;
+import com.wcci.calorieburner.Services.FoodService;
+
 public class CalculateCaloriesDto {
 
     private int currentWeight;
@@ -10,6 +15,10 @@ public class CalculateCaloriesDto {
     private double currentHeight;
     private boolean gender;
     private String name;
+    private String userName;
+    private String password;
+
+
 
     private List<OtherFoodDto> otherFoodEntered;
     private List<OtherExerciseDto> otherExerciseEntered;
@@ -19,6 +28,12 @@ public class CalculateCaloriesDto {
 
     private List<SelectedFood> selectedFoods = new ArrayList<>(); // Data from backend to frontend for dropdowns
     private List<SelectedExercise> selectedExercises = new ArrayList<>(); // Data from backend to frontend for dropdowns
+
+    @Autowired
+     private FoodService foodService;
+
+     @Autowired
+    private ExerciseService exerciseService;
 
     public CalculateCaloriesDto() {
     }
@@ -79,6 +94,22 @@ public class CalculateCaloriesDto {
         this.name = name;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setUsername(String username){
+        this.userName = username;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     public List<SelectedFood> getSelectedFoods() {
         return selectedFoods;
     }
@@ -125,6 +156,23 @@ public class CalculateCaloriesDto {
 
     public void setOtherExerciseEntered(List<OtherExerciseDto> otherExerciseEntered) {
         this.otherExerciseEntered = otherExerciseEntered;
+    }
+
+    public void createUser(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public void updateFoodList( Iterable<FoodModel> foods){
+        for (FoodModel food : foods) {
+            selectedFoods.add(new SelectedFood(food, 0));
+        }
+    }
+
+    public void updateExerciceList( Iterable<ExerciseModel> exercises){
+        for (ExerciseModel exercise : exercises) {
+            selectedExercises.add(new SelectedExercise(exercise, 0));
+        }
     }
 
 }
