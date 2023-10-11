@@ -204,7 +204,7 @@
 
       <!-- User Input Section -->
       <h2>User Information</h2>
-      <form action="#" th:action="@{/user/calculator}" method="post" th:object="${calculator}">
+      <form action="#" th:action="@{/user/home/calculator}" method="post" th:object="${calculator}">
         <input type="hidden" id="yourId" th:value="${calculator.selectedFoods}" />
         <div class="userGroup">
           <label for="name">Name:</label>

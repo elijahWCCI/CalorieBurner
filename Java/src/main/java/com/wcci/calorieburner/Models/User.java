@@ -102,14 +102,23 @@ public class User {
         this.currentHeight = currentHeight;
     }
 
-    public void createUser(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-        this.name = "";
-        this.gender = true;
-        this.age = 0;
-        this.currentWeight = 0;
-        this.currentHeight = 0;
+    public String getUserName() {
+        return userName;
     }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+
+
 
 }
